@@ -2,7 +2,8 @@
 title: My First Blog Post
 published: 2026-04-03
 description: This is the first post of my new blog.
-image: https://www.linkedin.com/pulse/passive-reconnaissance-tools-nitin-bhanderi
+image: <img width="522" height="373" alt="image" src="https://github.com/user-attachments/assets/ec347e7d-7431-4f8b-8c22-ecfbee2d3ddf" />
+
 tags: [tag1, tag2]
 category: Frontend
 draft: false
