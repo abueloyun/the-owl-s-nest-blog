@@ -1,8 +1,8 @@
 ---
 title: My First Blog Post
-published: 2023-09-09
+published: 2026-04-03
 description: This is the first post of my new blog.
-image: ./cover.jpg
+image: https://www.linkedin.com/pulse/passive-reconnaissance-tools-nitin-bhanderi
 tags: [tag1, tag2]
 category: Frontend
 draft: false
