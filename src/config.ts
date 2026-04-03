@@ -277,12 +277,12 @@ export const navBarConfig: NavBarConfig = {
 			url: "/links/",
 			icon: "material-symbols:link",
 			children: [
-				// {
-				// 	name: "GitHub",
-				// 	url: "https://github.com/LyraVoid/Mizuki",
-				// 	external: true,
-				// 	icon: "fa7-brands:github",
-				// },
+				{
+					name: "GitHub",
+					url: "https://github.com/AbuElOyun",
+					external: true,
+					icon: "fa7-brands:github",
+				},
 				{
 					name: "Twitter",
 					url: "https://x.com/abo_el3n1in",
@@ -333,11 +333,11 @@ export const profileConfig: ProfileConfig = {
 		speed: 80, // Typing speed (milliseconds)
 	},
 	links: [
-		// {
-		// 	name: "GitHub",
-		// 	icon: "fa7-brands:github",
-		// 	url: "https://github.com/matsuzaka-yuki",
-		// },
+		{
+			name: "GitHub",
+			icon: "fa7-brands:github",
+			url: "https://github.com/AbuElOyun",
+		},
 		{
 			name: "Twitter",
 			icon: "fa7-brands:twitter",
