@@ -1,6 +1,6 @@
 import type { SakuraConfig } from "../types/config";
 
-// 樱花对象类
+// Sakura object class
 class Sakura {
 	x: number;
 	y: number;
@@ -52,7 +52,7 @@ class Sakura {
 		cxt.translate(this.x, this.y);
 		cxt.rotate(this.r);
 		cxt.globalAlpha = this.a;
-		// 使用 transform 替代直接 drawImage 以支持 GPU 加速
+		// Use transform instead of direct drawImage to support GPU acceleration
 		cxt.drawImage(this.img, 0, 0, 40 * this.s, 40 * this.s);
 		cxt.restore();
 	}
@@ -63,7 +63,7 @@ class Sakura {
 		this.r = this.fn.r(this.r);
 		this.a = this.fn.a(this.a);
 
-		// 如果樱花越界或完全透明，重新调整位置
+		// If sakura goes out of bounds or becomes fully transparent, reset position
 		if (
 			this.x > window.innerWidth ||
 			this.x < 0 ||
@@ -71,11 +71,11 @@ class Sakura {
 			this.y < 0 ||
 			this.a <= 0
 		) {
-			// 如果樱花不做限制
+			// If sakura has no limit
 			if (this.limitArray[this.idx] === -1) {
 				this.resetPosition();
 			}
-			// 否则樱花有限制
+			// Otherwise sakura has limits
 			else {
 				if (this.limitArray[this.idx] > 0) {
 					this.resetPosition();
@@ -103,7 +103,7 @@ class Sakura {
 	}
 }
 
-// 樱花列表类
+// Sakura list class
 class SakuraList {
 	list: Sakura[];
 
@@ -136,7 +136,7 @@ class SakuraList {
 	}
 }
 
-// 获取随机值的函数
+// Get random value function
 function getRandom(option: string, config: SakuraConfig): any {
 	let ret: any;
 	let random: number;
@@ -185,7 +185,7 @@ function getRandom(option: string, config: SakuraConfig): any {
 	return ret;
 }
 
-// 樱花管理器类
+// Sakura manager class
 export class SakuraManager {
 	private config: SakuraConfig;
 	private canvas: HTMLCanvasElement | null = null;
@@ -202,17 +202,17 @@ export class SakuraManager {
 		this.boundResizeHandler = this.handleResize.bind(this);
 	}
 
-	// 初始化樱花特效
+	// Initialize sakura effect
 	async init(): Promise<void> {
 		if (!this.config.enable || this.isRunning) {
 			return;
 		}
 
-		// 创建图片对象
+		// Create image object
 		this.img = new Image();
-		this.img.src = "/sakura.png"; // 使用樱花图片
+		this.img.src = "/sakura.png"; // Use sakura image
 
-		// 等待图片加载完成
+		// Wait for image to load
 		await new Promise<void>((resolve, reject) => {
 			if (this.img) {
 				this.img.onload = () => resolve();
@@ -227,7 +227,7 @@ export class SakuraManager {
 		this.isRunning = true;
 	}
 
-	// 创建画布
+	// Create canvas
 	private createCanvas(): void {
 		this.canvas = document.createElement("canvas");
 		this.canvas.height = window.innerHeight;
@@ -240,13 +240,13 @@ export class SakuraManager {
 		document.body.appendChild(this.canvas);
 		this.ctx = this.canvas.getContext("2d");
 
-		// 使用被动事件监听器提升滚动性能
+		// Use passive event listener to improve scroll performance
 		window.addEventListener("resize", this.boundResizeHandler, {
 			passive: true,
 		});
 	}
 
-	// 创建樱花列表
+	// Create sakura list
 	private createSakuraList(): void {
 		if (!this.img || !this.ctx) {
 			return;
@@ -291,7 +291,7 @@ export class SakuraManager {
 		}
 	}
 
-	// 开始动画
+	// Start animation
 	private startAnimation(): void {
 		if (!this.ctx || !this.canvas || !this.sakuraList) {
 			return;
@@ -311,7 +311,7 @@ export class SakuraManager {
 		this.animationId = requestAnimationFrame(animate);
 	}
 
-	// 处理窗口大小变化 - 带防抖
+	// Handle window resize - with debounce
 	private handleResize(): void {
 		if (this.resizeTimeout) {
 			cancelAnimationFrame(this.resizeTimeout);
@@ -324,7 +324,7 @@ export class SakuraManager {
 		});
 	}
 
-	// 停止樱花特效
+	// Stop sakura effect
 	stop(): void {
 		if (this.animationId) {
 			cancelAnimationFrame(this.animationId);
@@ -345,7 +345,7 @@ export class SakuraManager {
 		this.isRunning = false;
 	}
 
-	// 切换樱花特效
+	// Toggle sakura effect
 	toggle(): void {
 		if (this.isRunning) {
 			this.stop();
@@ -354,7 +354,7 @@ export class SakuraManager {
 		}
 	}
 
-	// 更新配置
+	// Update config
 	updateConfig(newConfig: SakuraConfig): void {
 		const wasRunning = this.isRunning;
 		if (wasRunning) {
@@ -366,16 +366,16 @@ export class SakuraManager {
 		}
 	}
 
-	// 获取运行状态
+	// Get running status
 	getIsRunning(): boolean {
 		return this.isRunning;
 	}
 }
 
-// 创建全局樱花管理器实例
+// Create global sakura manager instance
 let globalSakuraManager: SakuraManager | null = null;
 
-// 初始化樱花特效
+// Initialize sakura effect
 export function initSakura(config: SakuraConfig): void {
 	if (globalSakuraManager) {
 		globalSakuraManager.updateConfig(config);
@@ -387,14 +387,14 @@ export function initSakura(config: SakuraConfig): void {
 	}
 }
 
-// 切换樱花特效
+// Toggle sakura effect
 export function toggleSakura(): void {
 	if (globalSakuraManager) {
 		globalSakuraManager.toggle();
 	}
 }
 
-// 停止樱花特效
+// Stop sakura effect
 export function stopSakura(): void {
 	if (globalSakuraManager) {
 		globalSakuraManager.stop();
@@ -402,7 +402,7 @@ export function stopSakura(): void {
 	}
 }
 
-// 获取樱花特效运行状态
+// Get sakura effect running status
 export function getSakuraStatus(): boolean {
 	return globalSakuraManager ? globalSakuraManager.getIsRunning() : false;
 }

@@ -1,6 +1,6 @@
 /**
- * MobileTOC 自定义钩子
- * 处理移动端目录的状态管理和交互逻辑
+ * MobileTOC custom hook
+ * Handles mobile TOC state management and interaction logic
  */
 
 export interface TOCItem {
@@ -23,7 +23,7 @@ export interface TOCConfig {
 }
 
 /**
- * 生成目录项
+ * Generate TOC items
  */
 export function generateTOCItems(config: TOCConfig): TOCItem[] {
 	const japaneseHiragana = [
@@ -60,7 +60,7 @@ export function generateTOCItems(config: TOCConfig): TOCItem[] {
 
 		const level = parseInt(heading.tagName.charAt(1), 10);
 
-		// 根据 depth 配置过滤标题
+		// Filter headings based on depth configuration
 		if (level > config.depth) {
 			return;
 		}
@@ -68,7 +68,7 @@ export function generateTOCItems(config: TOCConfig): TOCItem[] {
 		const text = (heading.textContent || "").replace(/#+\s*$/, "");
 		let badge = "";
 
-		// 只为 H1 标题生成 badge
+		// Only generate badge for H1 headings
 		if (level === 1) {
 			h1Count++;
 			if (
@@ -88,7 +88,7 @@ export function generateTOCItems(config: TOCConfig): TOCItem[] {
 }
 
 /**
- * 生成文章列表项（首页使用）
+ * Generate post list items (used on homepage)
  */
 export function generatePostItems(): PostItem[] {
 	const postCards = document.querySelectorAll(".card-base");
@@ -120,7 +120,7 @@ export function generatePostItems(): PostItem[] {
 }
 
 /**
- * 检查是否为首页
+ * Check if current page is homepage
  */
 export function checkIsHomePage(): boolean {
 	const pathname = window.location.pathname;
@@ -128,7 +128,7 @@ export function checkIsHomePage(): boolean {
 }
 
 /**
- * 更新活动标题（基于滚动位置）
+ * Update active heading (based on scroll position)
  */
 export function updateActiveHeading(): string {
 	const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -149,7 +149,7 @@ export function updateActiveHeading(): string {
 }
 
 /**
- * 滚动到指定标题
+ * Scroll to specified heading
  */
 export function scrollToHeading(id: string, offset = 80): void {
 	const element = document.getElementById(id);
@@ -163,7 +163,7 @@ export function scrollToHeading(id: string, offset = 80): void {
 }
 
 /**
- * 获取 TOC 配置
+ * Get TOC configuration
  */
 export function getTOCConfig(): TOCConfig {
 	return {

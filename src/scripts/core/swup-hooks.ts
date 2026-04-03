@@ -1,6 +1,6 @@
 /**
- * Swup 钩子模块
- * 处理页面过渡过程中的各种钩子事件
+ * Swup Hooks Module
+ * Handles various hook events during page transitions
  */
 
 import { pathsEqual, url } from "../../utils/url-utils";
@@ -13,7 +13,7 @@ import {
 	THEME_CONFIG,
 } from "./swup-config";
 
-// 钩子处理器接口
+// Hook handler interface
 export interface SwupHookHandlers {
 	fancyboxHandler?: FancyboxHandler;
 	scrollHandler?: ScrollHandler;
@@ -24,7 +24,7 @@ export interface SwupHookHandlers {
 	checkKatex?: () => void;
 }
 
-// 访问对象类型
+// Visit object type
 interface VisitObject {
 	to: {
 		url: string;
@@ -32,8 +32,8 @@ interface VisitObject {
 }
 
 /**
- * Swup 钩子管理器
- * 负责注册和管理所有 Swup 页面过渡钩子
+ * Swup Hooks Manager
+ * Responsible for registering and managing all Swup page transition hooks
  */
 export class SwupHooksManager {
 	private bannerEnabled: boolean;
@@ -66,7 +66,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 注册所有 Swup 钩子
+	 * Register all Swup hooks
 	 */
 	registerHooks(): void {
 		if (!window.swup) {
@@ -80,18 +80,18 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * link:click 钩子
-	 * 处理链接点击时的初始状态
+	 * link:click hook
+	 * Handles initial state when link is clicked
 	 */
 	private registerLinkClickHook(): void {
 		window.swup!.hooks.on("link:click", () => {
-			// 移除首次页面加载的延迟
+			// Remove first page load delay
 			document.documentElement.style.setProperty(
 				"--content-delay",
 				"0ms",
 			);
 
-			// 处理 navbar 隐藏
+			// Handle navbar hide
 			if (this.bannerEnabled) {
 				this.handleNavbarHideOnLinkClick();
 			}
@@ -99,93 +99,93 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * content:replace 钩子
-	 * 处理内容替换后的初始化
+	 * content:replace hook
+	 * Handles initialization after content replacement
 	 */
 	private registerContentReplaceHook(): void {
 		window.swup!.hooks.on("content:replace", () => {
 			this.clearCache();
 
-			// 初始化新页面的图片、公式、滚动条和 TOC
+			// Initialize new page images, formulas, scrollbars and TOC
 			this.handlers.initFancybox?.();
 			this.handlers.checkKatex?.();
 			this.handlers.initCustomScrollbar?.();
 
-			// 处理 TOC 重新初始化
+			// Handle TOC reinitialization
 			this.handleTOCReinit();
 
-			// 重新初始化 semifull 模式滚动检测
+			// Reinitialize semifull mode scroll detection
 			this.reinitSemifullScrollDetection();
 		});
 	}
 
 	/**
-	 * visit:start 钩子
-	 * 处理页面访问开始时的状态
+	 * visit:start hook
+	 * Handles state when page visit starts
 	 */
 	private registerVisitStartHook(): void {
 		window.swup!.hooks.on("visit:start", (visit: VisitObject) => {
-			// 清理上一页的 Fancybox
+			// Cleanup previous page's Fancybox
 			this.handlers.cleanupFancybox?.();
 
-			// 处理页面状态
+			// Handle page state
 			const isHomePage = pathsEqual(visit.to.url, url("/"));
 			this.handleBodyClass(isHomePage);
 			this.handleBannerTextVisibility(isHomePage);
 			this.handleNavbarState(isHomePage);
 			this.handleMobileBannerVisibility(isHomePage);
 
-			// 扩展页面高度防止滚动动画跳跃
+			// Extend page height to prevent scroll animation jump
 			this.extendPageHeight(false);
 
-			// 隐藏 TOC
+			// Hide TOC
 			this.hideTOC();
 		});
 	}
 
 	/**
-	 * page:view 钩子
-	 * 处理页面视图显示
+	 * page:view hook
+	 * Handles page view display
 	 */
 	private registerPageViewHook(): void {
 		window.swup!.hooks.on("page:view", () => {
-			// 扩展页面高度
+			// Extend page height
 			this.extendPageHeight(false);
 
-			// 滚动到页面顶部
+			// Scroll to top of page
 			window.scrollTo({
 				top: 0,
 				behavior: "instant",
 			});
 
-			// 同步主题状态
+			// Sync theme state
 			this.syncThemeState();
 
-			// 触发页面加载完成事件
+			// Trigger page loaded event
 			this.dispatchPageLoadedEvent();
 		});
 	}
 
 	/**
-	 * visit:end 钩子
-	 * 处理页面访问结束时的清理
+	 * visit:end hook
+	 * Handles cleanup when page visit ends
 	 */
 	private registerVisitEndHook(): void {
 		window.swup!.hooks.on("visit:end", (_visit: VisitObject) => {
 			setTimeout(() => {
-				// 隐藏高度扩展元素
+				// Hide height extension element
 				this.extendPageHeight(true);
 
-				// 显示 TOC
+				// Show TOC
 				this.showTOC();
 			}, ANIMATION_CONFIG.heightExtendDelay);
 		});
 	}
 
-	// ==================== 私有辅助方法 ====================
+	// ==================== Private Helper Methods ====================
 
 	/**
-	 * 处理链接点击时的 navbar 隐藏
+	 * Handle navbar hide on link click
 	 */
 	private handleNavbarHideOnLinkClick(): void {
 		const navbar = this.getCachedElement(SWUP_SELECTORS.navbarWrapper);
@@ -198,7 +198,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 处理 TOC 重新初始化
+	 * Handle TOC reinitialization
 	 */
 	private handleTOCReinit(): void {
 		const tocWrapper = this.getCachedElement(SWUP_SELECTORS.tocWrapper);
@@ -227,7 +227,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 重新初始化 semifull 模式滚动检测
+	 * Reinitialize semifull mode scroll detection
 	 */
 	private reinitSemifullScrollDetection(): void {
 		const navbar = this.getCachedElement(SWUP_SELECTORS.navbar);
@@ -247,7 +247,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 处理 body class
+	 * Handle body class
 	 */
 	private handleBodyClass(isHomePage: boolean): void {
 		const bodyElement = this.getCachedElement("body");
@@ -261,7 +261,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 处理 Banner 文字可见性
+	 * Handle Banner text visibility
 	 */
 	private handleBannerTextVisibility(isHomePage: boolean): void {
 		const bannerTextOverlay = this.getCachedElement(
@@ -277,14 +277,14 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 处理 Navbar 状态
+	 * Handle Navbar state
 	 */
 	private handleNavbarState(isHomePage: boolean): void {
 		const navbar = this.getCachedElement(SWUP_SELECTORS.navbar);
 		if (navbar) {
 			navbar.setAttribute("data-is-home", isHomePage.toString());
 
-			// 重新初始化 semifull 模式滚动检测
+			// Reinitialize semifull mode scroll detection
 			const transparentMode = navbar.getAttribute(
 				"data-transparent-mode",
 			);
@@ -300,7 +300,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 处理移动端 Banner 可见性
+	 * Handle mobile Banner visibility
 	 */
 	private handleMobileBannerVisibility(isHomePage: boolean): void {
 		const bannerWrapper = this.getCachedElement(
@@ -312,7 +312,7 @@ export class SwupHooksManager {
 
 		if (bannerWrapper && mainContentWrapper) {
 			if (isHomePage) {
-				// 首页：延迟移除隐藏类
+				// Home page: delay removing hide class
 				setTimeout(() => {
 					bannerWrapper.classList.remove("mobile-hide-banner");
 				}, ANIMATION_CONFIG.mobileBannerDelay);
@@ -322,7 +322,7 @@ export class SwupHooksManager {
 					);
 				}, ANIMATION_CONFIG.mobileContentDelay);
 			} else {
-				// 非首页：分阶段隐藏
+				// Non-home page: hide in stages
 				bannerWrapper.classList.add("mobile-hide-banner");
 				setTimeout(() => {
 					mainContentWrapper.classList.add("mobile-main-no-banner");
@@ -332,7 +332,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 扩展/隐藏页面高度
+	 * Extend/Hide page height
 	 */
 	private extendPageHeight(hide: boolean): void {
 		const heightExtend = this.getCachedElement(
@@ -342,9 +342,10 @@ export class SwupHooksManager {
 			return;
 		}
 
-		// 只在 Banner 模式下启用高度扩展
-		// fullscreen/none 模式内容往往不足一屏，如果强行扩展高度，
-		// 会导致滚动条在页面过渡期间闪现，引发布局左右抖动
+		// Only enable height extension in Banner mode
+		// fullscreen/none mode content is often less than one screen,
+		// if forced to extend height, it will cause scrollbar to flash during page transition,
+		// causing layout jitter left and right
 		const isBannerMode = document.body.classList.contains("enable-banner");
 		if (!isBannerMode) {
 			return;
@@ -358,7 +359,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 隐藏 TOC
+	 * Hide TOC
 	 */
 	private hideTOC(): void {
 		const toc = this.getCachedElement(SWUP_SELECTORS.tocWrapper);
@@ -368,7 +369,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 显示 TOC
+	 * Show TOC
 	 */
 	private showTOC(): void {
 		const toc = this.getCachedElement(SWUP_SELECTORS.tocWrapper);
@@ -378,8 +379,8 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 同步主题状态
-	 * 解决从首页进入文章页面时代码块渲染问题
+	 * Sync theme state
+	 * Solves code block rendering issues when entering article page from home page
 	 */
 	private syncThemeState(): void {
 		const storedTheme =
@@ -395,17 +396,17 @@ export class SwupHooksManager {
 		const hasDarkClass =
 			document.documentElement.classList.contains("dark");
 
-		// 如果主题不匹配，使用批量更新减少重绘
+		// If theme doesn't match, use batch update to reduce repaints
 		if (currentTheme !== expectedTheme || hasDarkClass !== isDark) {
 			requestAnimationFrame(() => {
-				// 同步 data-theme 属性
+				// Sync data-theme attribute
 				if (currentTheme !== expectedTheme) {
 					document.documentElement.setAttribute(
 						"data-theme",
 						expectedTheme,
 					);
 				}
-				// 同步 dark class
+				// Sync dark class
 				if (hasDarkClass !== isDark) {
 					if (isDark) {
 						document.documentElement.classList.add("dark");
@@ -418,8 +419,8 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 触发页面加载完成事件
-	 * 用于初始化评论系统
+	 * Trigger page loaded event
+	 * Used to initialize comment system
 	 */
 	private dispatchPageLoadedEvent(): void {
 		setTimeout(() => {
@@ -435,7 +436,7 @@ export class SwupHooksManager {
 				});
 				document.dispatchEvent(pageLoadedEvent);
 				console.log(
-					"Layout: 触发 mizuki:page:loaded 事件，路径:",
+					"Layout: Triggered mizuki:page:loaded event, path:",
 					window.location.pathname,
 				);
 			}
@@ -443,7 +444,7 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 更新处理器
+	 * Update handlers
 	 */
 	updateHandlers(handlers: Partial<SwupHookHandlers>): void {
 		this.handlers = { ...this.handlers, ...handlers };

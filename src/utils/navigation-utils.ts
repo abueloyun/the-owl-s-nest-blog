@@ -1,12 +1,12 @@
 /**
- * 导航工具函数
- * 提供统一的页面导航功能，支持 Swup 无刷新跳转
+ * Navigation utility functions
+ * Provides unified page navigation functionality, supports Swup refresh-free navigation
  */
 
 /**
- * 导航到指定页面
- * @param url 目标页面URL
- * @param options 导航选项
+ * Navigate to specified page
+ * @param url Target page URL
+ * @param options Navigation options
  */
 export function navigateToPage(
 	url: string,
@@ -15,13 +15,13 @@ export function navigateToPage(
 		force?: boolean;
 	},
 ): void {
-	// 检查 URL 是否有效
+	// Check if URL is valid
 	if (!url || typeof url !== "string") {
 		console.warn("navigateToPage: Invalid URL provided");
 		return;
 	}
 
-	// 如果是外部链接，直接跳转
+	// If external link, open directly
 	if (
 		url.startsWith("http://") ||
 		url.startsWith("https://") ||
@@ -31,7 +31,7 @@ export function navigateToPage(
 		return;
 	}
 
-	// 如果是锚点链接，滚动到对应位置
+	// If anchor link, scroll to corresponding position
 	if (url.startsWith("#")) {
 		const element = document.getElementById(url.slice(1));
 		if (element) {
@@ -40,10 +40,10 @@ export function navigateToPage(
 		return;
 	}
 
-	// 检查 Swup 是否可用
+	// Check if Swup is available
 	if (typeof window !== "undefined" && (window as any).swup) {
 		try {
-			// 使用 Swup 进行无刷新跳转
+			// Use Swup for refresh-free navigation
 			if (options?.replace) {
 				(window as any).swup.navigate(url, { history: false });
 			} else {
@@ -51,18 +51,18 @@ export function navigateToPage(
 			}
 		} catch (error) {
 			console.error("Swup navigation failed:", error);
-			// 降级到普通跳转
+			// Fallback to regular navigation
 			fallbackNavigation(url, options);
 		}
 	} else {
-		// Swup 不可用时的降级处理
+		// Fallback when Swup is not available
 		fallbackNavigation(url, options);
 	}
 }
 
 /**
- * 降级导航函数
- * 当 Swup 不可用时使用普通的页面跳转
+ * Fallback navigation function
+ * Uses regular page navigation when Swup is not available
  */
 function fallbackNavigation(
 	url: string,
