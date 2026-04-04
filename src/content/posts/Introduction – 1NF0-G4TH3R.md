@@ -10,7 +10,7 @@ comment: true
 lang: ar
 ---
 
-‫<div>
+‫<div dir="rtl">
 ‫
 # Web Reconnaissance – مقدمة
 
