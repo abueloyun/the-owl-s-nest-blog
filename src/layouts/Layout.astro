@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import ConfigCarrier from "@components/misc/ConfigCarrier.astro";
 import MusicPlayer from "@components/widgets/music-player/MusicPlayer.svelte";
 import Pio from "@components/features/pio/Pio.svelte"; // 使用 Svelte 版本的 Pio 组件
@@ -329,3 +330,47 @@ if (siteConfig.font) {
 <script>
 	import "../scripts/theme-optimizer.js";
 </script>
+  GNU nano 8.7.1               src/layouts/Layout.astro *                       
+
+<script>
+        // Swup 页面过渡管理器 - 统一入口
+        // 所有功能已重构为模块化架构，详见 src/scripts/ 目录
+        import { initSwupManager } from "../scripts/swup-manager";
+
+        // 初始化 Swup 管理器
+        initSwupManager();
+</script>
+
+<!-- 代码块折叠功能 -->
+<script>
+        import "../scripts/code-collapse.js";
+</script>
+
+<!-- 主题切换综合性能优化器（包含代码块优化、重型元素优化、性能诊断） -->
+<script>
+        import "../scripts/theme-optimizer.js";
+</script>
+
+  GNU nano 8.7.1               src/layouts/Layout.astro *                       
+
+<script>
+        // Swup 页面过渡管理器 - 统一入口
+        // 所有功能已重构为模块化架构，详见 src/scripts/ 目录
+        import { initSwupManager } from "../scripts/swup-manager";
+
+        // 初始化 Swup 管理器
+        initSwupManager();
+</script>
+
+<!-- 代码块折叠功能 -->
+<script>
+        import "../scripts/code-collapse.js";
+</script>
+
+<!-- 主题切换综合性能优化器（包含代码块优化、重型元素优化、性能诊断） -->
+<script>
+        import "../scripts/theme-optimizer.js";
+</script>
+
+<!-- Analytics -->
+<Analytics />
