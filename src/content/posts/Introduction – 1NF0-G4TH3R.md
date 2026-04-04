@@ -28,8 +28,7 @@ lang: ar
 فلنفترض إن عندك موقع اسمه `example.com`  
 ‫
 في الخطوة دي بتحاول تجمع: 
-
-‫1. ‫**Subdomains** مختلفة، زي `admin.example.com` أو `api.example.com`‬  
+1. **Subdomains مختلفة**: مثل `admin.example.com` أو `api.example.com`
 ‫‬2. **عناوين الـ IP** الخاصة بالموقع  
 ‫‬3. **التقنيات المستخدمة**، هل الموقع بيستخدم `PHP` ولا `Node.JS`  
 ‬‬
