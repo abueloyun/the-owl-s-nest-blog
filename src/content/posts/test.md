@@ -2,7 +2,7 @@
 title: My First Blog Post
 published: 2026-04-03
 description: This is the first post of my new blog.
-image: ../assets/images/UdcsESPYQvuNuBBFwtUgRw.png
+image: /home/lab-user/Desktop/MyBlog/src/assets/images/UdcsESPYQvuNuBBFwtUgRw.png
 
 tags: [tag1, tag2]
 category: Frontend
