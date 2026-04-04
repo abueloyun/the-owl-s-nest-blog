@@ -107,7 +107,7 @@ lang: ar
 
 ---
 
-### 2. Passive Reconnaissance
+### 2. Passive Recon
 <div align="center">
 
 <img src="/images/posts/img_1NF0-G4TH3R/img_Introduction/Passive.png" alt="Passive Recon" width="300"/>
