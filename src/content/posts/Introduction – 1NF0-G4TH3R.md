@@ -69,7 +69,7 @@ lang: ar
 
 ---
 
-## أنواع الاستطلاع (Type of Reconnaissance)
+## (Type of Reconnaissance)
 
 احنا عندنا نوعين أساسين في **web reconnaissance**:  
 **Active و Passive**  
