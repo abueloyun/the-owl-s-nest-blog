@@ -432,7 +432,8 @@ export const shareConfig: ShareConfig = {
 
 export const announcementConfig: AnnouncementConfig = {
 	title: "", // Announcement title, leave empty to use i18n string Key.announcement
-	content: "Welcome to the blog!", // Announcement content
+	content:
+		"This blog is designed as a structured revision resource to reinforce and simplify what you've already learned, not as a primary learning source.", // Announcement content
 	closable: true, // Allow users to close the announcement
 	link: {
 		enable: true, // Enable link
