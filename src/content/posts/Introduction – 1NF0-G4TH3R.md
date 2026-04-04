@@ -27,6 +27,7 @@ lang: ar
 
 فلنفترض إن عندك موقع اسمه `example.com`  
 ‫
+
 في الخطوة دي بتحاول تجمع: 
 1. **Subdomains مختلفة**: مثل `admin.example.com` أو `api.example.com`
 2. **عناوين الـ IP** الخاصة بالموقع
