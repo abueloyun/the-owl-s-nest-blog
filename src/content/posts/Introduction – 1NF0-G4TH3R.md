@@ -82,7 +82,7 @@ lang: ar
 ### 1. Active Recon
 <div align="center">
 
-<img src="/images/posts/Active.png" alt="Active Recon" width="300"/>
+<img src="/images/posts/img_1NF0-G4TH3R/img_Introduction/Active.png" alt="Active Recon" width="300"/>
 
 </div>
 
@@ -110,7 +110,7 @@ lang: ar
 ### 2. Passive Reconnaissance
 <div align="center">
 
-<img src="/images/posts/Passive.png" alt="Passive Recon" width="300"/>
+<img src="/images/posts/img_1NF0-G4TH3R/img_Introduction/Passive.png" alt="Passive Recon" width="300"/>
 
 </div>
 
