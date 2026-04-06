@@ -2,7 +2,7 @@
 title: Whois – 1NF0-G4TH3R
 published: 2026-04-06
 description: ‫دليل سريع لفهم WHOIS وتحليل بيانات الدومينات‬
-tags: Whois lookup
+tags: [Whois Lookup]
 category: 1NF0-G4TH3R Series
 draft: false
 pinned: false
