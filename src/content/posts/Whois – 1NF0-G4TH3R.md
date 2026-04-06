@@ -13,12 +13,7 @@ lang: ar
 
 <div dir="rtl" align="right">
 
-# Whois
-<div align="center">
 
-<img src="/images/posts/img_1NF0-G4TH3R/img_WHOIS/Whois.jpeg" alt="WHOIS" width="300"/>
-
-</div>
 Whois هو يعتبر بروتوكول أو أداة شغلته إنه يجمع بشكل أساسي معلومات عن الموارد المسجلة على الإنترنت وغالبًا بيُستخدم عشان تعرف معلومات عن domain names وكمان ممكن يجيب معلومات عن عناوين IP وAutonomous Systems.
 
 
