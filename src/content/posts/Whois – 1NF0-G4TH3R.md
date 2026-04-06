@@ -2,7 +2,6 @@
 title: Whois – 1NF0-G4TH3R
 published: 2026-04-06
 description: ‫كيفية الاستفادة من WHOIS في Web Recon وسيناريوهات عملية.‬
-tags: [whois, reconnaissance, cybersecurity, pentesting]
 category: 1NF0-G4TH3R Series
 draft: false
 pinned: false
