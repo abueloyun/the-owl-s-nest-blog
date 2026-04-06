@@ -1,7 +1,7 @@
 ---
 title: Whois – 1NF0-G4TH3R
 published: 2026-04-06
-description: ‫كيفية الاستفادة من WHOIS في Web Recon وسيناريوهات عملية.‬
+description: ‫دليل سريع لفهم WHOIS وتحليل بيانات الدومينات‬
 category: 1NF0-G4TH3R Series
 draft: false
 pinned: false
