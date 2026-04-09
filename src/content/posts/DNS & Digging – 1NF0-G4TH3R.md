@@ -172,11 +172,8 @@ lang: ar
 
 </div>
 
-<div dir="rtl">
 
-### - ملف الـ Hosts في ويندوز:
-
-</div>
+### - The Hosts file in Windows
 
 
 ```bash
@@ -184,17 +181,16 @@ c:\windows\system32\drivers\etc\hosts
 ```
 
 
-<div dir="rtl" align="right">
   
-### - ملف الـ Hosts في  Linux & macOS:
+### - The Hosts file in Linux & macOS
 
-</div>
 
 
 
 ```bash
 /etc/hosts
 ```
+
 <div dir="rtl">
   
 > علشان تعدل علي الملف ده لازم تفتحه بصلاحيات `administrator` أو `root`
@@ -223,11 +219,9 @@ c:\windows\system32\drivers\etc\hosts
 
 
 
-<div dir="rtl" align="right">
   
-### كل Zone بيكون ليها Zone File
+### Each zone has its own zone file
 
-</div>
 
 
 
@@ -283,11 +277,9 @@ ftp     IN CNAME www.example.com.
 
 
 
-<div dir="rtl" align="right">
 
-## أشهر أنواع الـ DNS records
+## The most common types of DNS records
 
-</div>
 
 
 
@@ -343,11 +335,9 @@ ftp     IN CNAME www.example.com.
 
 
 
-<div dir="rtl" align="right">
   
-##  ليه الـ DNS مهم في الـ Web Recon
+##  Why DNS is important in web reconnaissance
 
-</div>
 
 
 
@@ -529,13 +519,7 @@ google.com.             0       IN      A       142.251.47.142
 
 
 
-
-<div dir="rtl" align="right">
-
-## الـ dig output متقسم دايماً لـ 4 أجزاء
-
-</div>
-
+## The dig output is always divided into `4` sections
 
 
 
