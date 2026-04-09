@@ -2,7 +2,7 @@
 title: Introduction – 1NF0-G4TH3R
 published: 2026-04-04
 description: ‫مقدمة شاملة عن Web Reconnaissance وأنواعه الأساسية.‬
-image: /images/posts/img_1NF0-G4TH3R/img_introduction/intro.jpg
+image: /images/posts/img_1NF0-G4TH3R/img_introduction/introd.png
 tags: [Active Recon, Passive Recon]
 category: 1NF0-G4TH3R Series
 draft: false
