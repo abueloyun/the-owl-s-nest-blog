@@ -227,7 +227,7 @@ c:\windows\system32\drivers\etc\hosts
 
 <div dir="rtl" align="right">
 
-‫وده عبارة عن text file موجود علي DNS server, بيحدد فيه كل الـ `resource records` اللي جوة الـ zone (هنتكلم عنهم بعد شوية), وبيوفر معلومات مهمة علشان نقدر نترجم أسماء الدومينات لـ IP Addresses
+‫الـ zone file هو عبارة عن text file موجود علي DNS server, بيحدد فيه كل الـ `resource records` اللي جوة الـ zone (هنتكلم عنهم بعد شوية), وبيوفر معلومات مهمة علشان نقدر نترجم أسماء الدومينات لـ IP Addresses
 
 مثال مبسط لملف Zone لدومين  `example.com`
 </div>
@@ -519,7 +519,7 @@ google.com.             0       IN      A       142.251.47.142
 
 
 
-## The dig output is always divided into `4` sections
+## The `dig output` is always divided into 4 sections
 
 
 
