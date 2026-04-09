@@ -183,11 +183,12 @@ lang: ar
 c:\windows\system32\drivers\etc\hosts
 ```
 
-<div dir="rtl">
 
+<div dir="rtl" align="right">
+  
 ### - في Linux & macOS:
-
 </div>
+
 
 
 ```bash
@@ -220,13 +221,15 @@ c:\windows\system32\drivers\etc\hosts
 
 
 
-<div dir="rtl">
+
+<div dir="rtl" align="right">
   
 ### كل Zone بيكون ليها Zone File
+
 ‫وده عبارة عن text file موجود علي DNS server, بيحدد فيه كل الـ `resource records` اللي جوة الـ zone (هنتكلم عنهم بعد شوية), وبيوفر معلومات مهمة علشان نقدر نترجم أسماء الدومينات لـ IP Addresses
 مثال مبسط لملف Zone لدومين  `example.com`
-
 </div>
+
 
 
 
@@ -271,11 +274,13 @@ ftp     IN CNAME www.example.com.
 ---
 
 
+
 <div dir="rtl">
 
-##  أشهر أنواع الـ DNS records
 
+##  أشهر أنواع الـ DNS records.
 </div>
+
 
 
 
@@ -329,9 +334,11 @@ ftp     IN CNAME www.example.com.
 
 
 
-<div dir="rtl">
+
+<div dir="rtl" align="right">
   
 ##  ليه الـ DNS مهم في الـ Web Recon
+
 الـ DNS مش مجرد نظام بيحوّل الدومين لـ IP، ده جزء مهم جدًا من البنية التحتية لأي target، وتقدر تستغله في الريكون عشان تكتشف ثغرات أو نقاط دخول.
 
 </div>
@@ -508,11 +515,13 @@ google.com.             0       IN      A       142.251.47.142
 
 
 
-<div dir="rtl">
+
+<div dir="rtl" align="right">
 
 ## الـ dig output متقسم دايمًا لـ 4 أجزاء:
 
 </div>
+
 
 
 
