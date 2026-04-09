@@ -167,13 +167,17 @@ c:\windows\system32\drivers\etc\hosts
 
 
 تعتبر الـ zone جزء محدد من domain name space بيتم إدارته بواسطة جهة أو مسؤول معين, وتعتبر حاوية إفتراضية لمجموعة من الـ domain names والـ records الخاصة بهم
+
 *علي سبيل المثال :*
+
 لو عندنا الدومين الرئيسي : `example.com`
+
 وكذلك كل الـ subdomains الخاصة بهم : `blog.example.com` - `mail.example.com`
 > كلهم بينتمو لنفس الـ DNS Zone لو كانو تحت نفس الإدارة يعني نفس الشخص أو الجهة المسؤولة عن إدارة DNS Records الخاصة بهم
 
 ### كل Zone بيكون ليها Zone File
 وده عبارة عن text file موجود علي DNS server, بيحدد فيه كل الـ `resource records` اللي جوة الـ zone (هنتكلم عنهم بعد شوية), وبيوفر معلومات مهمة علشان نقدر نترجم أسماء الدومينات لـ IP Addresses
+
 مثال مبسط لملف Zone لدومين  `example.com`
 
 
@@ -202,6 +206,7 @@ ftp     IN CNAME www.example.com.
 - authoritative name servers (NS records)
 - mail server (MX record)
 - IP addresses (A records)
+
 الـ DNS Server بتخزن أنواع مختلفة من `resource records` وكل نوع له وظيفة محددة في عملية ترجمة أسماء الدومينات لـ IP addresses
 
 *بعد ما فهمنا أساسيات الـ DNS نقدر نغوص أكثر في بناء المعلومات جوة الـ DNS واللي بيتمثل في Record types المختلفة كل نوع record بيخزن بيانات معينة للدومين وبيخدم غرض محدد*
@@ -228,13 +233,15 @@ ftp     IN CNAME www.example.com.
 
 
 ###  معني الـ "IN"
-IN في الأمثلة معناها Internet. ده ببساطة class في Records DNS بيحدد نوع البروتوكول المستخدم. أغلب الوقت هتشوفه IN لأنه يدل على بروتوكولات الإنترنت القياسية (IPv4/IPv6).
-فيه قيم تانية زي:
+‫IN في الأمثلة معناها Internet. ده ببساطة `class` في Records DNS بيحدد نوع البروتوكول المستخدم.
+أغلب الوقت هتشوفه `IN` لأنه يدل على بروتوكولات الإنترنت القياسية (IPv4/IPv6).
+
+‬فيه قيم تانية زي:
 CH → Chaosnet
 HS → Hesiod
 
 لكن الحاجات دي نادرة جدًا في الاستخدام الحديث.
-> الـ IN هو default في أغلب الحالات ومش هتشوف غيره تقريبًا في الشغل الحقيقي.
+> الـ IN هو `default` في أغلب الحالات ومش هتشوف غيره تقريبًا في الشغل الحقيقي.
 
 ---
 
@@ -253,16 +260,13 @@ HS → Hesiod
 | Authoritative Name Server| The server that holds the actual IP address for a domain.                  | Often managed by hosting providers or domain registrars                  |
 | DNS Record Types         | Different types of information stored in DNS.                              | `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, etc.                            |
 
-
-
-
-
 ---
 
 ##  ليه الـ DNS مهم في الـ Web Recon
 الـ DNS مش مجرد نظام بيحوّل الدومين لـ IP، ده جزء مهم جدًا من البنية التحتية لأي target، وتقدر تستغله في الريكون عشان تكتشف ثغرات أو نقاط دخول.
 
 1. (Uncovering Assets)
+
 من خلال الـ DNS records تقدر تطلع معلومات كتير جدًا زي:
 - subdomains
 - mail servers
@@ -281,26 +285,16 @@ dev.example.com CNAME oldserver.example.net
 
 ---
 
-
-
 # Digging DNS
-
-
-
 
 بعد ما بقينا فاهمين أساسيات الـ DNS وأنواع الـ Records المختلفة نقدر دلوقتي نبدأ ندخل في الجزء العملي 
 السيكشن ده هيركز علي الأدوات والتقنيات اللي تقدر تستخدمهم علشان تستغل الـ DNS في الـ web reconnaissance 
 
 
-
 ## DNS Tools :
 
 
-
 في الـ DNS Reconnaissance بنستخدم أدوات مخصوصة علشان نعمل queries علي DNS Server ونطلع معلومات مفيدة عن التارجت 
-
-
-
 
 
 
@@ -317,14 +311,9 @@ dev.example.com CNAME oldserver.example.net
 | theHarvester             | OSINT tool that gathers information from various sources, including DNS records (email addresses). | Collecting email addresses, employee information, and other data associated with a domain from multiple sources. |
 | Online DNS Lookup Services | User-friendly interfaces for performing DNS lookups.                        | Quick and easy DNS lookups, convenient when command-line tools are not available, checking for domain availability or basic information. |
 
-
-
-
-
+---
 
 ## The Domai Information Groper (dig)
-
-
 
 أداة (dig) بإختصار هي تعتبر من أهم وأقوي الأدوات في الـ DNS بتستخدمها علشان تعمل querying علي DNS Server وتجيب أنواع مختلفة من DNS Records
 
@@ -336,8 +325,6 @@ dev.example.com CNAME oldserver.example.net
 > وده بيخليها (go-to-choice) لأي حد
 
 ---
-
-
 
 
 ### Common dig commands :
