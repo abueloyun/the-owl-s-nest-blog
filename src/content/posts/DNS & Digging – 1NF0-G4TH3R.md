@@ -38,32 +38,41 @@ lang: ar
 > `The internet's trusty translator`
 
 <div dir="rtl">
+  
 **تعالا بق ناخد رحلة بسيطة ونشوف العملية دي بتتم إزاي.**
+
 </div>
 
 
 <div align="center">
+  
 <img src="/images/posts/img_1NF0-G4TH3R/img_DNS&dig/Works.webp" alt="How To Works DNS" align="center" width="80%"/>
+
 </div>
 
 ### 1. your computer asks for direction (DNS Query)
 
 
 <div dir="rtl">
+  
 لما أنت بتدخل الـ Domain Name بتاع الموقع جهازك بيروح أول حاجة يدور عنده في الـ cach علشان يشوف هل هو محتفظ بعنوان الـ IP بتاع الموقع من زيارة سابقة ولا لا ولو ملقهوش بيرح علي طول بيتواصل مع DNS Resolver واللي هو غالباً بيبق تابع لمزود خدمة الإنترنت بتاعك `( ISP )`
+
 </div>
 
 
 ### 2. the DNS resolver checks its map (recursive lookup)
 
 <div dir="rtl">
+  
 الـ resolver هو كمان عنده cache بيروح يدور فيها ولو لقاها بيرجعها للجهاز بتاعك ولو ملقهاش بيبدأ بعدها يروح لـ root name server 
+
 </div>
 
 ### 3. Root Name Server Points the way
 
 
 <div dir="rtl">
+  
 الـ root server هو مش عارف الـ IP بتاع الـ Domain Name ده أي بالظبط ولكن هو عارف مين يعرف  
 
 *طيب هو بيعمل أي بالظبط :*
@@ -71,6 +80,7 @@ lang: ar
 الـ root بيرد عليك بحاجة اسمها referral يقولك أنا مش عندي الـ ip ده بس الـ TLD بتاع الـ Domain هو .com يبقي روح إسأل سيرفرات .com  
 
 > فهو بس بيوجه الـ resolver في المكان الصح 
+
 </div>
 
 
@@ -78,8 +88,10 @@ lang: ar
 
 
 <div dir="rtl">
+  
 الـ TLD name server هو بيشبه الخريطة الإقليمية  
 وهو اللي عارف الـ Authoritative name server المسؤول عن الـ specific domain وبعدها بيوجه الـ resolver لهناك.
+
 </div>
 
 
@@ -87,7 +99,9 @@ lang: ar
 
 
 <div dir="rtl">
+  
 دي بتبق اخر محطة وهو اللي عنده الإجابة النهائية فبيجيب الـ IP وبيبعته للـ Resolver 
+
 </div>
 
 
@@ -95,7 +109,9 @@ lang: ar
 
 
 <div dir="rtl">
+  
 بيستلم الـ resolver عنوان الـ IP ويعيده إلي جهازك وبيحتفظ بيه في الـ caching عنده علشان لو إحتجته تاني قريباً 
+
 </div>
 
 
@@ -103,7 +119,9 @@ lang: ar
 
 
 <div dir="rtl">
+  
 دلوقتي جهازك بق عارف الـ IP ويقدر يتواصل مباشرة بالسيرفر اللي مستضيف الموقع وتبدأ تتصفح فيه عادي
+
 </div>
 
 ---
@@ -113,6 +131,7 @@ lang: ar
 
 
 <div dir="rtl">
+  
 تخيل عملية DNS زي سباق تتابع  
 
 - جهازك بيبدأ بالـ Domain  
@@ -123,6 +142,7 @@ lang: ar
 
 وفي الأخر:  
 يتم ايجاد الـ IP ويرجع بنفس الطريقة لحد ما يوصل لجهازك, بعدين تقدر تفتح الموقع.
+
 </div>
 
 ---
@@ -132,11 +152,14 @@ lang: ar
 
 
 <div align="center">
+  
 <img src="/images/posts/img_1NF0-G4TH3R/img_DNS&dig/Hosts.wdmp" alt="Hosts File" align="center" width="80%"/>
+
 </div>
 
 
 <div dir="rtl">
+  
 ملف الـ hosts هو simple text file بيستخدم لربط الـ host names بعناوين IP , بيوفر طريقة يدوية لعملية الـ Domain name resolution بدل ما تعتمد علي نظام الـ DNS  
 
 بينما يقوم DNS بترجمة الـ Domain name إلي عناوين IP بشكل تلقائي يسمح لك ملف الـ Hosts بإنك تعمل تعديلات محلية مباشرة  
@@ -146,7 +169,6 @@ lang: ar
 - Development  
 - Troubleshooting  
 - Blocking websites  
-
 
 </div>
 
@@ -160,7 +182,9 @@ c:\windows\system32\drivers\etc\hosts
 /etc/hosts
 ```
 <div dir="rtl">
+  
 > علشان تعدل علي الملف ده لازم تفتحه بصلاحيات administrator أو root
+
 </div>
 
 ---
@@ -170,6 +194,7 @@ c:\windows\system32\drivers\etc\hosts
 
 
 <div dir="rtl">
+  
 تعتبر الـ zone جزء محدد من domain name space بيتم إدارته بواسطة جهة أو مسؤول معين, وتعتبر حاوية إفتراضية لمجموعة من الـ domain names والـ records الخاصة بهم
 
 **علي سبيل المثال :**
@@ -183,6 +208,7 @@ c:\windows\system32\drivers\etc\hosts
 وده عبارة عن text file موجود علي DNS server, بيحدد فيه كل الـ `resource records` اللي جوة الـ zone (هنتكلم عنهم بعد شوية), وبيوفر معلومات مهمة علشان نقدر نترجم أسماء الدومينات لـ IP Addresses
 
 مثال مبسط لملف Zone لدومين  `example.com`
+
 </div>
 
 
@@ -204,6 +230,7 @@ ftp     IN CNAME www.example.com.
 ```
 
 <div dir="rtl">
+  
 الملف ده بيحدد:
 - **Authoritative Name Servers** (NS records)
 - **Mail Server** (MX record)
@@ -212,6 +239,7 @@ ftp     IN CNAME www.example.com.
 الـ DNS Server بيخزن أنواع مختلفة من `resource records` وكل نوع له وظيفة محددة في عملية ترجمة أسماء الدومينات لـ IP addresses
 
 **بعد ما فهمنا أساسيات الـ DNS نقدر نغوص أكثر في بناء المعلومات جوة الـ DNS واللي بيتمثل في Record types المختلفة كل نوع record بيخزن بيانات معينة للدومين وبيخدم غرض محدد**
+
 </div>
 
 ---
@@ -235,6 +263,7 @@ ftp     IN CNAME www.example.com.
 
 
 <div dir="rtl">
+  
 ###  معني الـ "IN"
 ‫IN في الأمثلة معناها Internet. ده ببساطة `class` في Records DNS بيحدد نوع البروتوكول المستخدم.
 أغلب الوقت هتشوفه `IN` لأنه يدل على بروتوكولات الإنترنت القياسية (IPv4/IPv6).
@@ -245,6 +274,7 @@ ftp     IN CNAME www.example.com.
 
 لكن الحاجات دي نادرة جدًا في الاستخدام الحديث.
 > الـ IN هو `default` في أغلب الحالات ومش هتشوف غيره تقريبًا في الشغل الحقيقي.
+
 </div>
 
 ---
@@ -267,6 +297,7 @@ ftp     IN CNAME www.example.com.
 ---
 
 <div dir="rtl">
+  
 ##  ليه الـ DNS مهم في الـ Web Recon
 الـ DNS مش مجرد نظام بيحوّل الدومين لـ IP، ده جزء مهم جدًا من البنية التحتية لأي target، وتقدر تستغله في الريكون عشان تكتشف ثغرات أو نقاط دخول.
 
@@ -278,6 +309,7 @@ ftp     IN CNAME www.example.com.
 - name servers
 **مثال:**
 لو لقيت حاجة زي:
+
 </div>
 
 
@@ -286,6 +318,7 @@ dev.example.com CNAME oldserver.example.net
 ```
 
 <div dir="rtl">
+  
 > ده ممكن يدل إن فيه سيرفر قديم لسه مربوط، وغالبًا بيكون فيه ثغرات → نقطة دخول سهلة.
 
 2. (Mapping Infrastructure)
@@ -299,14 +332,18 @@ dev.example.com CNAME oldserver.example.net
 # Digging DNS
 
 <div dir="rtl">
+  
 بعد ما بقينا فاهمين أساسيات الـ DNS وأنواع الـ Records المختلفة نقدر دلوقتي نبدأ ندخل في الجزء العملي 
 السيكشن ده هيركز علي الأدوات والتقنيات اللي تقدر تستخدمهم علشان تستغل الـ DNS في الـ web reconnaissance 
+
 </div>
 
 ## DNS Tools :
 
 <div dir="rtl">
+  
 في الـ DNS Reconnaissance بنستخدم أدوات مخصوصة علشان نعمل queries علي DNS Server ونطلع معلومات مفيدة عن التارجت 
+
 </div>
 
 
@@ -328,6 +365,7 @@ dev.example.com CNAME oldserver.example.net
 ## The Domai Information Groper (dig)
 
 <div dir="rtl">
+  
 أداة (dig) بإختصار هي تعتبر من أهم وأقوي الأدوات في الـ DNS بتستخدمها علشان تعمل querying علي DNS Server وتجيب أنواع مختلفة من DNS Records
 
 اللي بيمزها عن باقي الأدوات إنها :
@@ -336,6 +374,7 @@ dev.example.com CNAME oldserver.example.net
 - تقدر تتحكم في شكل الـ output
 
 > وده بيخليها (go-to-choice) لأي حد
+
 </div>
 
 ---
@@ -365,6 +404,7 @@ dev.example.com CNAME oldserver.example.net
 
 
 <div dir="rtl">
+  
 > ⚠️ Caution  
 > بعض السيرفرات ممكن تلاحظ إنك بتبعت عدد كبير من DNS Queries وساعتها ممكن تعملك Block 
 علشان كده : 
@@ -373,7 +413,9 @@ dev.example.com CNAME oldserver.example.net
 - متزودش في عدد الـ Queries بشكل مبالغ فيه 
 وأهم حاجة : 
 > لازم يكون عندك permission قبل ما تعمل DNS Recon بشكل كبير علي أي Target
+
 </div>
+
 ---
 
 
@@ -404,11 +446,13 @@ google.com.             0       IN      A       142.251.47.142
 
 
 <div dir="rtl">
+  
 لما بتكتب: `dig google.com` انت كده بتقول: يا DNS، هاتلي الـ `A) record)`بتاع الدومين ده
 بس اللي بيرجعلك مش مجرد IP… ده بيبق `full report` عن اللي حصل
 
 
 ## الـ dig output متقسم دايمًا لـ 4 أجزاء:
+
 </div>
 
 
@@ -418,11 +462,13 @@ google.com.             0       IN      A       142.251.47.142
 ```
 
 <div dir="rtl">
+  
 `الـ opcode:` يعني نوع العملية → QUERY عادي
 `الـ status:` 
 - NOERROR → كله تمام
 - NXDOMAIN → الدومين مش موجود 
 - SERVFAIL → السيرفر فشل
+
 </div>
 
 ```bash
@@ -430,10 +476,12 @@ google.com.             0       IN      A       142.251.47.142
 ```
 
 <div dir="rtl">
+  
 الـ flags دي عبارة عن شوية “علامات” أو bits صغيرة في الـ DNS response،
 كل واحدة فيهم بتقولك معلومة عن اللي حصل في الـ query.
 
 **تعالي نفهم كل flag واحدة واحدة**
+
 </div>
 
 
@@ -441,17 +489,21 @@ google.com.             0       IN      A       142.251.47.142
 
 
 <div dir="rtl">
+  
 دي معناها إن ده response مش request
+
 </div>
 
 
 2. rd → Recursion Desired
 
 <div dir="rtl">
+  
 دي معناها إنك طلبت من السيرفر يعمل recursion
 *طب يعني ايه recursion؟* يعني:
 بدل ما السيرفر يقولك "مش عارف"
 هو يروح يسأل باقي السيرفرات (root → TLD → authoritative) لحد ما يجيبلك الإجابة, يعني ميرجعش وإيده فاضية
+
 </div>
 
 
@@ -459,8 +511,10 @@ google.com.             0       IN      A       142.251.47.142
 
 
 <div dir="rtl">
+  
 دي معناها إن البيانات verified باستخدام DNSSEC 
 يعني السيرفر بيقولك "أنا متأكد إن الداتا دي أصلية
+
 </div>
 
 
@@ -470,7 +524,9 @@ google.com.             0       IN      A       142.251.47.142
 ```
 
 <div dir="rtl">
+  
 السطر ده بيوضح السؤال اللي انت سألته: ‫ايه الـ IPv4 address (A record) الخاص بـ google.com؟‬
+
 </div>
 
 
@@ -481,6 +537,7 @@ google.com. 0 IN A 142.251.47.142
 ```
 
 <div dir="rtl">
+  
 ده الرد على سؤالك بيقولك إن الـ IP الخاص بـ google.com هو: `142.251.47.142`
 
 تفصيل السطر:
@@ -491,6 +548,7 @@ google.com. 0 IN A 142.251.47.142
 142.251.47.142 → الـ IP
 
 > الـ 0 هنا معناها إن النتيجة مش هتتخزن في الـ (cache) أو هتخلص فورًا
+
 </div>
 
 
@@ -499,14 +557,17 @@ google.com. 0 IN A 142.251.47.142
 
 
 <div dir="rtl">
+  
 الـ Footer بيبقى فيه شوية معلومات إضافية عن الطلب زي الوقت اللي أخده التنفيذ (Query time) والسيرفر اللي رد عليك.
 وكمان بيعرض تفاصيل تانية زي توقيت تنفيذ الطلب (WHEN) وحجم الرسالة اللي استلمتها (MSG SIZE).
+
 </div>
 
 ---
 
 
 <div dir="rtl">
+  
 🧠 Challenge
 
 
@@ -520,5 +581,6 @@ google.com. 0 IN A 142.251.47.142
 **المطلوب هنا**
 1. ليه التحذير ده ظهر أصلاً؟
 2. إيه اللي مفروض يظهر في الـ flags لو السيرفر بيقبل يعمل recursion بشكل طبيعي؟
+
 </div>
 
