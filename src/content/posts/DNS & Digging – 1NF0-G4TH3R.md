@@ -11,9 +11,9 @@ comment: true
 lang: ar
 ---
 
-# DNS
-
 <div dir=rtl align="right">
+  
+# DNS
 
 Domain name system هو نظام وظيفته أنه يحول الأسماء اللي البشر بيفهمها مثل google.com إلي عناوين IP مناسبة مثل 192.168.1.1 اللغة اللي الكمبيوتر بيفهمها
 
