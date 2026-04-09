@@ -3,7 +3,7 @@ title: DNS & Digging – 1NF0-G4TH3R
 published: 2026-04-09
 description: ‫‫فهم DNS & dig واستخدامه في جمع Web Recon.‬
 image: /images/posts/img_1NF0-G4TH3R/img_DNS&dig/DNS.wdmp
-tags: [DNS, dig]
+tags: [DNS, dig, DNS Tools, Groping DNS]
 category: 1NF0-G4TH3R Series
 draft: false
 pinned: false
@@ -26,8 +26,8 @@ lang: ar
 
 <div dir="rtl">
 
-تخيل دلوقتي إنك عايز تخش علي موقع `example.com` فبسهولة بتروح فاتح المتصفح وتكتب إسم الموقع , لكن الكمبيوتر مش بيفهم الكلمات أو لغة البشر هو بيتعامل بس مع لغة الأرقام وتحديداً عناوين IP,  
-كلام جميل , المفروض دلوقتي يبق عندك سؤال وهو إزاي بيحول من لغة البشر إلي عناوين IP مناسبة للكمبيوتر.
+تخيل دلوقتي إنك عايز تخش علي موقع `example.com` فبسهولة بتروح فاتح المتصفح وتكتب إسم الموقع , لكن الكمبيوتر مش بيفهم الكلمات أو لغة البشر هو بيتعامل بس مع لغة الأرقام وتحديداً عناوين IP
+كلام جميل, المفروض دلوقتي يبق عندك سؤال وهو إزاي بيحول من لغة البشر إلي عناوين IP مناسبة للكمبيوتر.
 </div>
 
 <div dir="rtl">
@@ -79,7 +79,7 @@ lang: ar
 
 الـ root بيرد عليك بحاجة اسمها referral يقولك أنا مش عندي الـ ip ده بس الـ TLD بتاع الـ Domain هو .com يبقي روح إسأل سيرفرات .com  
 
-> فهو بس بيوجه الـ resolver في المكان الصح 
+> `فهو بس بيوجه الـ resolver في المكان الصح`
 
 </div>
 
@@ -89,8 +89,8 @@ lang: ar
 
 <div dir="rtl">
   
-الـ TLD name server هو بيشبه الخريطة الإقليمية  
-وهو اللي عارف الـ Authoritative name server المسؤول عن الـ specific domain وبعدها بيوجه الـ resolver لهناك.
+الـ TLD name server هو بيشبه الخريطة الإقليمية
+وهو اللي عارف الـ `Authoritative name server` المسؤول عن الـ specific domain وبعدها بيوجه الـ resolver لهناك.
 
 </div>
 
@@ -160,7 +160,7 @@ lang: ar
 
 <div dir="rtl">
   
-ملف الـ hosts هو simple text file بيستخدم لربط الـ host names بعناوين IP , بيوفر طريقة يدوية لعملية الـ Domain name resolution بدل ما تعتمد علي نظام الـ DNS  
+ملف الـ hosts هو `simple text file` بيستخدم لربط الـ host names بعناوين IP , بيوفر طريقة يدوية لعملية الـ `Domain name resolution` بدل ما تعتمد علي نظام الـ DNS  
 
 بينما يقوم DNS بترجمة الـ Domain name إلي عناوين IP بشكل تلقائي يسمح لك ملف الـ Hosts بإنك تعمل تعديلات محلية مباشرة  
 
@@ -182,18 +182,20 @@ lang: ar
 ```bash
 c:\windows\system32\drivers\etc\hosts
 ```
+
 <div dir="rtl">
 
 ### - في Linux & macOS:
 
 </div>
 
+
 ```bash
 /etc/hosts
 ```
 <div dir="rtl">
   
-> علشان تعدل علي الملف ده لازم تفتحه بصلاحيات administrator أو root
+> علشان تعدل علي الملف ده لازم تفتحه بصلاحيات `administrator` أو `root`
 
 </div>
 
@@ -216,6 +218,8 @@ c:\windows\system32\drivers\etc\hosts
 
 </div>
 
+
+
 <div dir="rtl">
   
 ### كل Zone بيكون ليها Zone File
@@ -223,6 +227,7 @@ c:\windows\system32\drivers\etc\hosts
 مثال مبسط لملف Zone لدومين  `example.com`
 
 </div>
+
 
 
 ```bash 
@@ -245,9 +250,16 @@ ftp     IN CNAME www.example.com.
 <div dir="rtl">
   
 الملف ده بيحدد:
+
+</div>
+
+
 - **Authoritative Name Servers** (NS records)
 - **Mail Server** (MX record)
 - **IP Addresses** (A records)
+
+
+<div dir="rtl">
 
 الـ DNS Server بيخزن أنواع مختلفة من `resource records` وكل نوع له وظيفة محددة في عملية ترجمة أسماء الدومينات لـ IP addresses
 
@@ -255,7 +267,10 @@ ftp     IN CNAME www.example.com.
 
 </div>
 
+
 ---
+
+
 <div dir="rtl">
 
 ##  أشهر أنواع الـ DNS records
@@ -313,17 +328,32 @@ ftp     IN CNAME www.example.com.
 ---
 
 
+
 <div dir="rtl">
   
 ##  ليه الـ DNS مهم في الـ Web Recon
 الـ DNS مش مجرد نظام بيحوّل الدومين لـ IP، ده جزء مهم جدًا من البنية التحتية لأي target، وتقدر تستغله في الريكون عشان تكتشف ثغرات أو نقاط دخول.
 
+</div>
+
+
 1. (Uncovering Assets)
 
+
+<div dir="rtl">
+
 من خلال الـ DNS records تقدر تطلع معلومات كتير جدًا زي:
+
+</div>
+
+
 - subdomains
 - mail servers
 - name servers
+
+
+<div dir="rtl">
+
 **مثال:**
 لو لقيت حاجة زي:
 
@@ -338,15 +368,14 @@ dev.example.com CNAME oldserver.example.net
   
 > ده ممكن يدل إن فيه سيرفر قديم لسه مربوط، وغالبًا بيكون فيه ثغرات → نقطة دخول سهلة.
 
-2. (Mapping Infrastructure)
-
-3. (Monitoring Changes)
-
 </div>
+
 
 ---
 
+
 # Digging DNS
+
 
 <div dir="rtl">
   
@@ -355,13 +384,16 @@ dev.example.com CNAME oldserver.example.net
 
 </div>
 
+
 ## DNS Tools :
+
 
 <div dir="rtl">
   
 في الـ DNS Reconnaissance بنستخدم أدوات مخصوصة علشان نعمل queries علي DNS Server ونطلع معلومات مفيدة عن التارجت 
 
 </div>
+
 
 
 ### The most popular and versatile tools :
@@ -383,7 +415,7 @@ dev.example.com CNAME oldserver.example.net
 
 <div dir="rtl">
   
-أداة (dig) بإختصار هي تعتبر من أهم وأقوي الأدوات في الـ DNS بتستخدمها علشان تعمل querying علي DNS Server وتجيب أنواع مختلفة من DNS Records
+أداة `(dig)` بإختصار هي تعتبر من أهم وأقوي الأدوات في الـ DNS بتستخدمها علشان تعمل querying علي DNS Server وتجيب أنواع مختلفة من DNS Records
 
 اللي بيمزها عن باقي الأدوات إنها :
 - مرنة جداً في الإستخدام 
@@ -429,6 +461,7 @@ dev.example.com CNAME oldserver.example.net
 - استخدم الأدوات بحذر 
 - إحترم الـ rate limits 
 - متزودش في عدد الـ Queries بشكل مبالغ فيه 
+
 وأهم حاجة : 
 > لازم يكون عندك permission قبل ما تعمل DNS Recon بشكل كبير علي أي Target
 
@@ -473,6 +506,8 @@ google.com.             0       IN      A       142.251.47.142
 
 </div>
 
+
+
 <div dir="rtl">
 
 ## الـ dig output متقسم دايمًا لـ 4 أجزاء:
@@ -480,11 +515,14 @@ google.com.             0       IN      A       142.251.47.142
 </div>
 
 
+
 ### 1. Header Section
 ```bash
 ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 16449
 ```
 
+
+<div dir="rtl">
   
 `الـ opcode:` يعني نوع العملية → QUERY عادي
 
@@ -492,6 +530,9 @@ google.com.             0       IN      A       142.251.47.142
 - NOERROR → كله تمام
 - NXDOMAIN → الدومين مش موجود 
 - SERVFAIL → السيرفر فشل
+
+</div>
+
 
 
 ```bash
@@ -568,6 +609,8 @@ google.com. 0 IN A 142.251.47.142
 </div>
 
 
+<div dir="rtl">
+
 الدومين → google.com
 
 0 → TTL (Time To Live)
@@ -578,7 +621,6 @@ A → نوع الـ Record
 
 142.251.47.142 → IP
 
-<div dir="rtl">
 
 > الـ 0 هنا معناها إن النتيجة مش هتتخزن في الـ (cache) أو هتخلص فورًا
 
