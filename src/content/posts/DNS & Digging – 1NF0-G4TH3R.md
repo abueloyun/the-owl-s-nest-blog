@@ -172,12 +172,22 @@ lang: ar
 
 </div>
 
+<div dir="rtl">
+
 ### - ملف الـ Hosts في ويندوز:
+
+</div>
+
 
 ```bash
 c:\windows\system32\drivers\etc\hosts
 ```
+<div dir="rtl">
+
 ### - في Linux & macOS:
+
+</div>
+
 ```bash
 /etc/hosts
 ```
@@ -204,9 +214,12 @@ c:\windows\system32\drivers\etc\hosts
 وكذلك كل الـ subdomains الخاصة بهم : `blog.example.com` - `mail.example.com`
 > كلهم بينتمو لنفس الـ DNS Zone لو كانو تحت نفس الإدارة يعني نفس الشخص أو الجهة المسؤولة عن إدارة DNS Records الخاصة بهم
 
-### كل Zone بيكون ليها Zone File
-وده عبارة عن text file موجود علي DNS server, بيحدد فيه كل الـ `resource records` اللي جوة الـ zone (هنتكلم عنهم بعد شوية), وبيوفر معلومات مهمة علشان نقدر نترجم أسماء الدومينات لـ IP Addresses
+</div>
 
+<div dir="rtl">
+  
+### كل Zone بيكون ليها Zone File
+‫وده عبارة عن text file موجود علي DNS server, بيحدد فيه كل الـ `resource records` اللي جوة الـ zone (هنتكلم عنهم بعد شوية), وبيوفر معلومات مهمة علشان نقدر نترجم أسماء الدومينات لـ IP Addresses
 مثال مبسط لملف Zone لدومين  `example.com`
 
 </div>
@@ -243,8 +256,11 @@ ftp     IN CNAME www.example.com.
 </div>
 
 ---
+<div dir="rtl">
 
 ##  أشهر أنواع الـ DNS records
+
+</div>
 
 
 
@@ -295,6 +311,7 @@ ftp     IN CNAME www.example.com.
 | DNS Record Types         | Different types of information stored in DNS.                              | `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, etc.                            |
 
 ---
+
 
 <div dir="rtl">
   
@@ -373,7 +390,7 @@ dev.example.com CNAME oldserver.example.net
 - بتطلع تفاصيل كتير
 - تقدر تتحكم في شكل الـ output
 
-> وده بيخليها (go-to-choice) لأي حد
+> وده بيخليها `(go-to-choice)` لأي حد
 
 </div>
 
@@ -407,6 +424,7 @@ dev.example.com CNAME oldserver.example.net
   
 > ⚠️ Caution  
 > بعض السيرفرات ممكن تلاحظ إنك بتبعت عدد كبير من DNS Queries وساعتها ممكن تعملك Block 
+
 علشان كده : 
 - استخدم الأدوات بحذر 
 - إحترم الـ rate limits 
@@ -447,9 +465,15 @@ google.com.             0       IN      A       142.251.47.142
 
 <div dir="rtl">
   
-لما بتكتب: `dig google.com` انت كده بتقول: يا DNS، هاتلي الـ `A) record)`بتاع الدومين ده
+لما بتكتب: `dig google.com` 
+
+انت كده بتقول: يا DNS، هاتلي الـ `A) record)`بتاع الدومين ده
+
 بس اللي بيرجعلك مش مجرد IP… ده بيبق `full report` عن اللي حصل
 
+</div>
+
+<div dir="rtl">
 
 ## الـ dig output متقسم دايمًا لـ 4 أجزاء:
 
@@ -461,15 +485,14 @@ google.com.             0       IN      A       142.251.47.142
 ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 16449
 ```
 
-<div dir="rtl">
   
 `الـ opcode:` يعني نوع العملية → QUERY عادي
+
 `الـ status:` 
 - NOERROR → كله تمام
 - NXDOMAIN → الدومين مش موجود 
 - SERVFAIL → السيرفر فشل
 
-</div>
 
 ```bash
 ;; flags: qr rd ad; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
@@ -541,11 +564,21 @@ google.com. 0 IN A 142.251.47.142
 ده الرد على سؤالك بيقولك إن الـ IP الخاص بـ google.com هو: `142.251.47.142`
 
 تفصيل السطر:
+
+</div>
+
+
 الدومين → google.com
-0 → الـ TTL (Time To Live)
-الـ IN → Internet
-الـ A → نوع الـ Record
-142.251.47.142 → الـ IP
+
+0 → TTL (Time To Live)
+
+IN → Internet
+
+A → نوع الـ Record
+
+142.251.47.142 → IP
+
+<div dir="rtl">
 
 > الـ 0 هنا معناها إن النتيجة مش هتتخزن في الـ (cache) أو هتخلص فورًا
 
@@ -576,7 +609,10 @@ google.com. 0 IN A 142.251.47.142
 لو وصلت لحد هنا… يبقى انت بدأت تفهم الدنيا ماشية إزاي 👀
 
 لما شغّلنا الأمر: `dig google.com`
-ظهر عندنا في الـ Header Section السطر ده:`;; WARNING: recursion requested but not available`
+
+ظهر عندنا في الـ Header Section السطر ده:
+
+`;; WARNING: recursion requested but not available`
 
 **المطلوب هنا**
 1. ليه التحذير ده ظهر أصلاً؟
