@@ -1,5 +1,5 @@
 ---
-title: Whois – 1NF0-G4TH3R
+title: HTB | 1NF0-G4TH3R – Whois
 published: 2026-04-06
 description: ‫دليل سريع لفهم WHOIS وتحليل بيانات الدومينات‬
 image: /images/posts/img_1NF0-G4TH3R/img_WHOIS/Whois.jpeg
