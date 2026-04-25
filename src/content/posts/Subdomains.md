@@ -1,3 +1,4 @@
+Discovering hidden subdomains and expanding the attack surface through passive and active reconnaissance techniques.
 ---
 title: HTB | 1NF0-G4TH3R – Subdomain Enumeration
 published: 2026-04-26
@@ -599,7 +600,7 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 - *subdomains :*
 
-<img src="/images/posts/img_1NF0-G4TH3R/Subdomain/subdomain.webp" alt="subdomain">
+<img src="/images/posts/img_1NF0-G4TH3R/Subdomain/subdomain.webp" alt="subdomain" align="center"/>
 
 
 دي بتبق عبارة عن extensions للـ main domain مثال : (`blog.example.com` هو subdomian من `example.com`)
@@ -637,7 +638,7 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 </div>
 
-<img src="/images/posts/img_1NF0-G4TH3R/Subdomain/virtualhosts.png" alt="virtualhosts">
+<img src="/images/posts/img_1NF0-G4TH3R/Subdomain/virtualhosts.png" alt="virtualhosts" align="center"/>
 
 ### 1. Browser Requests a Website :
 
