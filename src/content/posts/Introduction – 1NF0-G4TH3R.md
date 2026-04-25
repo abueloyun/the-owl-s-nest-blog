@@ -1,5 +1,5 @@
 ---
-title: Introduction – 1NF0-G4TH3R
+title: HTB | 1NF0-G4TH3R – Introduction
 published: 2026-04-04
 description: ‫مقدمة شاملة عن Web Reconnaissance وأنواعه الأساسية.‬
 tags: [Active Recon, Passive Recon]
