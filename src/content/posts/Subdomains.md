@@ -113,7 +113,10 @@ lang: ar
 
 ودي إنك بشكل systematically تجرب list من subdomain name محتملة علي الدومين
 
-Tools Like : `dnsenum`, `ffuf`, `gobuster`
+Tools Like :
+- `dnsenum`
+- `ffuf`
+- `gobuster`
 
 الأدوات دي بيعملو العملية دي اوتوماتيك بإستخدام wordlists فيها أسماء شائعة أو lists متولدة حسب patterns معينة 
 
@@ -165,9 +168,11 @@ Tools Like : `dnsenum`, `ffuf`, `gobuster`
 
 </div>
 
-**And this wordlist can be… :**
 
 <div dir="rtl">
+
+**And this wordlist can be… :**
+
  
 - **General-Purpose :**
 
@@ -337,7 +342,7 @@ dnsenum --enum example.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1m
 
 - `dnsenum --enum example.com` 
 
- هنا بنحدد الـ target domain اللي عايزين نعمله enumeration و `--enum` دي shortcut بتشغل وضع إسمه enum mode يعني بدل ما تشغل كل feature لوحدها، بتشغل كل حاجة مرة واحدة
+ هنا بنحدد الـ target domain اللي عايزين نعمله enumeration و (`--enum`) دي shortcut بتشغل وضع إسمه enum mode يعني بدل ما تشغل كل feature لوحدها، بتشغل كل حاجة مرة واحدة
 
 - `-f /usr/share/seclists/Discovery/DNS/subdomain-top1million-20000.txt`
 
