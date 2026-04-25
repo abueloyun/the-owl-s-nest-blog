@@ -1,4 +1,3 @@
-Discovering hidden subdomains and expanding the attack surface through passive and active reconnaissance techniques.
 ---
 title: HTB | 1NF0-G4TH3R – Subdomain Enumeration
 published: 2026-04-26
