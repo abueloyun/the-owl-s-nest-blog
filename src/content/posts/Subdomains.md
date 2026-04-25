@@ -2,7 +2,7 @@
 title: HTB | 1NF0-G4TH3R – Subdomain Enumeration
 published: 2026-04-24
 description: subdomain
-image: /images/posts/img_1NF0-G4TH3R/
+image: /images/posts/img_1NF0-G4TH3R/Subdomain/subdomain_enumeration.png
 tags: [subdomains]
 category: 1NF0-G4TH3R Series
 draft: false
@@ -100,23 +100,21 @@ lang: ar
 
 دي بتعتمد إنك تتعامل بشكل مباشر مع الـ DNS Server بتاعت الـ targets علشان تطلع منها الـ subdomains ودي فيها طرق زي: 
 
-</div>
 
 - DNS Zone transfer
 
-<div dir="rtl">
 
 لو السيرفر فيه Misconfigured ممكن يسرب لك list كاملة بكل الـ subdomains 
 > بس بسبب إن الـ Security measures بقت أقوي الموضوع بق نادر جداً 
 
-</div>
 
 - brute-force enumeration 
 
-<div dir="rtl">
 
 ودي إنك بشكل systematically تجرب list من subdomain name محتملة علي الدومين
+
 Tools Like : `dnsenum`, `ffuf`, `gobuster`
+
 الأدوات دي بيعملو العملية دي اوتوماتيك بإستخدام wordlists فيها أسماء شائعة أو lists متولدة حسب patterns معينة 
 
 </div>
@@ -128,11 +126,9 @@ Tools Like : `dnsenum`, `ffuf`, `gobuster`
 دي بتعتمد علي مصادر خارجية علشان تكتشف subdomains من غير ما تعمل direct queries علي DNS بتاع التارجت 
 من أهم المصادر:
 
-</div>
 
 - **`Certificate Transparency (CT) logs`**
 
-<div dir="rtl">
 
 ودي عبارة عن public repositories فيها `SSL/TLS certificates` وغالباً بيكون فيها list من الـ subdomains في الـ SAN (SUBJECT ALTERNATIVE NAME)
 
@@ -171,28 +167,26 @@ Tools Like : `dnsenum`, `ffuf`, `gobuster`
 
 **And this wordlist can be… :**
 
+<div dir="rtl">
+ 
 - **General-Purpose :**
 
-<div dir="rtl">
+
 
 فيها مجموعة كبيرة من الـ subdomain names الشائعة زي مثلاً :
 (dev, staging, blog, main, admin, test)
 ودي بتبق مفيدة لو إنت مش عارف الـ Namin Conventions بتاعت التارجت 
 
-</div>
 
 - **Targeted :**
 
-<div dir="rtl">
 
 بتكون مركزة علي industry أو technology أو patterns معينة ليها علاقة بالتارجت 
 > دي أكثر كفاءة وبتقلل الـ false positives 
 
-</div>
 
 - **Custom :**
 
-<div dir="rtl">
 
 تقدر تعمل wordlist بنفسك بناء علي key words أو patterns أو معلومات جمعتها من مصادر تانية 
 
@@ -356,10 +350,8 @@ dnsenum --enum example.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1m
  
 يعني لو الأداة لقت subdomain زي dev.inlanefreight.com
 
-الأداة ساعتها هتبدأ تجرب
+الأداة ساعتها هتبدأ تجرب (`api.`dev.inlanefreight.com ,`test.`dev.inlanefreight.com)
 
-- api.dev.inlanefreight.com
-- test.dev.inlanefreight.com
 يعني بتكمل عمق أكثر في الإكتشاف
 
 </div>
@@ -604,25 +596,21 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 الفرق الأساسي بين الـ subdomains & VHosts بيرجع لعلاقتهم بالـ DNS وكمان بإعدادات الـ web server 
 
-</div>
 
 - *subdomains :*
 
 <img src="/images/posts/img_1NF0-G4TH3R/Subdomain/subdomain.webp" alt="subdomain">
 
-<div dir="rtl">
 
 دي بتبق عبارة عن extensions للـ main domain مثال : (`blog.example.com` هو subdomian من `example.com`)
 وبيبق ليها الـ DNS record الخاصة بيها وممكن تشير لنفس الـ IP بتاع الـ main domain أو IP مختلف
 
 > الـ subdomains بتستخدم لتنظيم أقسام أو خدمات مختلفة داخل الموقع 
 
-</div>
 
 
 - *virtual hosts :*
 
-<div dir="rtl">
 
 دي عبارة عن configurations جوة الـ web server بتسمح إنك تستضيف كذا موقع أو application علي نفس السيرفر 
 
@@ -645,7 +633,7 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 <div dir="rtl">
 
-الصورة الجاية بتوضع إزاي الـ web server بيحدد المحتوي الصحيح اللي هيجيبه ليك بناء علي الـ Host Header 
+الصورة الجاية بتوضح إزاي الـ web server بيحدد المحتوي الصحيح اللي هيجيبه ليك بناء علي الـ Host Header 
 
 </div>
 
@@ -713,17 +701,16 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 ### There are a couple of things you need to prepare to brete force Host headers 
 
+<div dir="rtl">
+
 - 1. Target Identification :  
 
-<div dir="rtl">
 
 لازم الأول تحدد الـ IP الخاص بالـ target web server's وده بتعمله عن طريق DNS lookup أو أي reconnaissance techniques
 
-</div>
 
 - 2. Wordlist Preparation :
 
-<div dir="rtl">
 
 تجهز wordlist فيها host names محتملة للـ virtual hosts وممكن تستخدم wordlist جاهزة زي Seclists أو تعمل واحدة custom بناء علي target's industry, naming conventions, or other relevant information
 
@@ -762,7 +749,8 @@ Finished
 - The `--append-domain` flag appends the base domain to each word in the wordlist.
 
 
-**There are a couple of other arguments that are worth knowing :
+**There are a couple of other arguments that are worth knowing :**
+
 
 - Consider using the `-t` flag to increase the number of threads for faster /scanning.
 
@@ -801,25 +789,22 @@ Finished
 
 ## This transparency serves several crucial purposes : 
 
+<div dir="rtl">
+
 - Early Detection of Rogue Certificates : 
 
-<div dir="rtl">
 
 لو حد طلع certificate مزورة أو بالغلط الـ security researchers and website owners يقدرو يلاحطو ده بسرعة من خلال الـ CT logs والـ rogue certificate دي ببساطة شهادة مزيفة أو غير مصرح بيها طالعة من certificate authouity موثوق وإكتشافها بدري بيساعد إنهم يلغوها قبل ما تستغل في هجمات 
 
-</div>
 
 - Accountability for Certificate Authorities :
 
-<div dir="rtl">
 
 بما إن كل حاجة public أي CAs تطلع شهادة بشكل مخالف للقوانين أو الـ standards هتبقي مكشوفة وده ممكن يسبب فقدان الثقة فيها أو فرض عليها  عقوبات 
 
-</div>
 
 - Strengthening the Web PKI (Public Key Infrastructure) :
 
-<div dir="rtl">
 
 الـ Web PKI هو النظام اللي بيعتمد عليه الإنترنت في التأمين والثقة ووجود CT logs بيزود الأمان والنزاهة بتاعته لأنه بيدي وسيلة إن اي حد يراجع ويتأكد من الشهادات 
 
