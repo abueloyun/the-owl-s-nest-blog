@@ -13,14 +13,18 @@ lang: ar
 
 # subdomains
 
+<div dir="rtl">
 وإحنا بنستكشف الـ DNS Records كنا مركزين بشكل أساسي علي الـ main domain زي `example.com` وكل المعلومات المرتبطة بيه
-بس في الحقيقة تحت الدومين الأساسي ده في ` potential network subdomain`
+بس في الحقيقة تحت الدومين الأساسي ده في ` potential network subdomains`
 
-الـ subdomains دي عبارة عن extesnsion للـ main domain وغالباً بتستخدم علشان تعمل تنظيم وتقسيم لأجزاء أو functionalities مختلفة جوة الموقع 
+الـ subdomains دي عبارة عن extension للـ main domain وغالباً بتستخدم علشان تعمل تنظيم وتقسيم لأجزاء أو functionalities مختلفة جوة الموقع<dev dir="rtl">
+ 
 يعني مثلاً:
-`bolg.example.com` للـ blog بتاعتهم 
+`blog.example.com` للـ blog بتاعتهم 
 `shop.example.com` للـ online store
 `mail.example.com` للـ email 
+
+</div>
 
 ---
 
@@ -40,7 +44,7 @@ lang: ar
 ممكن تلاقي `admin panels` أو صفحات `login` مش معمولة علشان تبقي public ودي بتكون targets مغرية لأي attacker
 
 
-### Logacy Applications 
+### Legacy Applications 
 ساعات بيكون فيه web applications قديمة ومنسية شغالة علي subdomains وغالباً بتكون outdated وفيها vulnerabilities معروفة 
 
 
@@ -52,12 +56,14 @@ lang: ar
 ## Subdomain Enumeration
 الـ `subdomain enumeration` هو عمليةإنك بشكل systematic تحاول تحدد وتجمع كل الـ subdomains اللي تبع الدومين 
 
-من ناحية الـ DNS الـ Subdomain غالباً بتكون عبارة عن :
+من ناحية الـ DNS الـ Subdomains غالباً بتكون عبارة عن :
 - A records أو (AAAA لو IPv6) ودي بتعمل mapping بين اسم الـ subdomains والـ IP Address
 
 - CNAME ودي بتستخدم علشان تعمل alias للـ subdomain وتخليه يشاور علي domain أو subdomain تاني 
 
+
 ### There are two main methods for subdomain enumeration.
+
 #### 1. Active Subdomain Enumeration
 دي بتعتمد إنك تتعامل بشكل مباشر مع الـ DNS Server بتاعت الـ targets علشان تطلع منها الـ subdomains ودي فيها طرق زي: 
 - DNS Zone transfer
@@ -79,7 +85,7 @@ Tools Like : `dnsenum`, `ffuf`, `gobuster`
 > وده بيعتبر treasure trove من الـ targets
 
 
-- كمان تقدر تستخدم seaarch engines زي google & Duck Duck Go بإستخدام search operators زي `site:` علشان تطلع results فيها subdomains بس
+- كمان تقدر تستخدم search engines زي google & Duck Duck Go بإستخدام search operators زي `site:` علشان تطلع results فيها subdomains بس
 
 - في `online database & tools` بتجمع DNS data من مصادر مختلفة وتقدر تبحث فيها من غير م تتعامل مباشرة مع التارجت
 
@@ -89,16 +95,18 @@ Tools Like : `dnsenum`, `ffuf`, `gobuster`
 # Subdomain Bruteforcing
 الـ Subdomain Brute-Force Enumeration تعتبر من أقوي technique الـ Active subdomain discovery وبتعتمد علي إستخدام pre-defined lists من أسماء subdomains محتملة
 
-الفكرة هنا إنك بشكل systematic بتجرب الأسماء دي علي الـ Target domain علشان تحدد أي اللي فيهم valid subdomais 
+الفكرة هنا إنك بشكل systematic بتجرب الأسماء دي علي الـ Target domain علشان تحدد أي اللي فيهم valid subdomains 
 
 وبإستخدام wordlists متظبطة كويس تقدر تزود `effectiveness` و `efficiency` لعملية الـ subdomains discovery 
 
 
 ## The process breaks down into four steps 
+
 ### 1. Wordlist Selection :
 أول حاجة بتبدأ بيها العملية دي هي إنك تختار wordlists تحتوي علي subdomain names  
 
 **And this wordlist can be… :**
+
 - **General-Purpose :**
 فيها مجموعة كبيرة من الـ subdomain names الشائعة زي مثلاً :
 (dev, staging, blog, main, admin, test)
@@ -119,7 +127,8 @@ Tools Like : `dnsenum`, `ffuf`, `gobuster`
 
 
 ### 3. DNS Lookup :
-لكل subdomain محتمل بيتعمل DNS Quer علشان نتأكد هل بيعمل resolve لـ IP address ولا لا ‫وغالباً ده بيتم بإستخدام `A` or `AAAA` record type‬
+
+لكل subdomain محتمل بيتعمل DNS Query علشان نتأكد هل بيعمل resolve لـ IP address ولا لا ‫وغالباً ده بيتم بإستخدام `A` or `AAAA` record type‬
 
 إزاي ده بيحصل :
 
