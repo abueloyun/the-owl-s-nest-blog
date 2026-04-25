@@ -4,7 +4,7 @@ published: 2026-04-26
 description: Discovering hidden subdomains and expanding the attack surface through passive and active reconnaissance techniques.
 image: /images/posts/img_1NF0-G4TH3R/Subdomain/subdomain_enumeration2.png
 tags: [Subdomains, Subdomain Bruteforcing, DNS Zone Transfers, Virtual Hosts, CT Logs]
-category: 1NF0-G4TH3R Series
+category: Information-Gathering SeriesInformation-Gathering SeriesInformation-Gathering Series
 draft: false
 pinned: false
 comment: true
@@ -342,7 +342,7 @@ dnsenum --enum example.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1m
 
 - `dnsenum --enum example.com` 
 
- هنا بنحدد الـ target domain اللي عايزين نعمله enumeration و (`--enum`) دي shortcut بتشغل وضع إسمه enum mode يعني بدل ما تشغل كل feature لوحدها، بتشغل كل حاجة مرة واحدة
+ هنا بنحدد الـ target domain اللي عايزين نعمله enumeration و `-- enum` دي shortcut بتشغل وضع إسمه enum mode يعني بدل ما تشغل كل feature لوحدها، بتشغل كل حاجة مرة واحدة
 
 - `-f /usr/share/seclists/Discovery/DNS/subdomain-top1million-20000.txt`
 
@@ -351,7 +351,7 @@ dnsenum --enum example.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1m
 - `-r` 
 
 
-دي option ينستخدمها لما تحب تفعل `recursive subdomain brete-forcing`
+دي option ينستخدمها لما تحب تفعل `recursive subdomain brute-forcing`
  
 يعني لو الأداة لقت subdomain زي dev.inlanefreight.com
 
@@ -414,7 +414,9 @@ done.
 
 ## How to zone transfer works
 
+
 <img src="/images/posts/img_1NF0-G4TH3R/Subdomain/dns_zone_transfers.png" alt="Zone Transfer">
+
 
 ### 1. Zone Transfer Request (AXFR) : 
 
@@ -604,7 +606,11 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 - *subdomains :*
 
+</div>
+
 <img src="/images/posts/img_1NF0-G4TH3R/Subdomain/subdomain.webp" alt="subdomain" align="center"/>
+
+<div dir="rtl">
 
 
 دي بتبق عبارة عن extensions للـ main domain مثال : (`blog.example.com` هو subdomian من `example.com`)
@@ -642,7 +648,9 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 </div>
 
+
 <img src="/images/posts/img_1NF0-G4TH3R/Subdomain/virtualhosts.png" alt="virtualhosts" align="center"/>
+
 
 ### 1. Browser Requests a Website :
 
