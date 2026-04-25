@@ -1,11 +1,9 @@
 ---
-title: Subdomain Enumeration – 1NF0-G4TH3R
+title: HTB | 1NF0-G4TH3R – Subdomain Enumeration
 published: 2026-04-24
-description: su
-published: 2026-04-25
 description: subdomain
 image: /images/posts/img_1NF0-G4TH3R/
-tags: [subdomain]
+tags: [subdomains]
 category: 1NF0-G4TH3R Series
 draft: false
 pinned: false
