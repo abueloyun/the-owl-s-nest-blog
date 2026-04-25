@@ -1,9 +1,9 @@
 ---
 title: Subdomains
 published: 2026-04-24
-description: 
+description: subdomain
 image: /images/posts/img_1NF0-G4TH3R/
-tags: []
+tags: [subdomain]
 category: 1NF0-G4TH3R Series
 draft: false
 pinned: false
