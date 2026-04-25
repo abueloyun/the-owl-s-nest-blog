@@ -1,9 +1,9 @@
 ---
 title: HTB | 1NF0-G4TH3R – Subdomain Enumeration
 published: 2026-04-26
-description: subdomain
+description: Discovering hidden subdomains and expanding the attack surface through passive and active reconnaissance techniques.
 image: /images/posts/img_1NF0-G4TH3R/Subdomain/subdomain_enumeration2.png
-tags: [subdomains]
+tags: [Subdomains, Subdomain Bruteforcing, DNS Zone Transfers, Virtual Hosts, CT Logs]
 category: 1NF0-G4TH3R Series
 draft: false
 pinned: false
