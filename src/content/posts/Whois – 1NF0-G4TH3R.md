@@ -4,7 +4,7 @@ published: 2026-04-06
 description: ‫دليل سريع لفهم WHOIS وتحليل بيانات الدومينات‬
 image: /images/posts/img_1NF0-G4TH3R/img_WHOIS/Whois.jpeg
 tags: [Record WHOIS, WHOIS Lookup]
-category: 1NF0-G4TH3R Series
+category: Information-Gathering Series
 draft: false
 pinned: false
 comment: true
