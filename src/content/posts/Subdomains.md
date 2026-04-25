@@ -14,6 +14,7 @@ lang: ar
 # subdomains
 
 <div dir="rtl">
+ 
 وإحنا بنستكشف الـ DNS Records كنا مركزين بشكل أساسي علي الـ main domain زي `example.com` وكل المعلومات المرتبطة بيه
 بس في الحقيقة تحت الدومين الأساسي ده في ` potential network subdomains`
 
@@ -21,7 +22,9 @@ lang: ar
  
 يعني مثلاً:
 `blog.example.com` للـ blog بتاعتهم 
+
 `shop.example.com` للـ online store
+
 `mail.example.com` للـ email 
 
 </div>
@@ -29,27 +32,49 @@ lang: ar
 ---
 
 ## Why is this important for reconnaissance?
+
+<div dir="rtl">
+
 ليه ده مهم في الـ web reconnaissance 
 الـ subdomains الكتير بيكون عليها معلومات و resources مهمة ومش بتكون مرتبطة بشكل مباشر من الـ main website 
 
 وده ممكن يشمل:
 
+</div>
+
 ### Development
+
+<div dir="rtl">
+
 الشركات بتستخدم subdomain علشان تجرب features أو updates قبل ما تنزلها في الـ main website 
 
 > الأماكن دي أحياناً بيكون فيها security أقل فممكن تلاقي vulnerabilities أو معلومات حساسة 
 
+</div>
 
 ### Hidden Login Portals 
+
+<div dir="rtl">
+
 ممكن تلاقي `admin panels` أو صفحات `login` مش معمولة علشان تبقي public ودي بتكون targets مغرية لأي attacker
 
+</div>
 
 ### Legacy Applications 
+
+<div dir="rtl">
+
 ساعات بيكون فيه web applications قديمة ومنسية شغالة علي subdomains وغالباً بتكون outdated وفيها vulnerabilities معروفة 
 
+</div>
 
 ### Sensitive Information
+
+<div dir="rtl">
+
 ممكن subdomains تكشف بالغلط عن معلومات أو ملفات حساسة أو `internal data` أو `configuration files`
+
+</div>
 
 ---
 
