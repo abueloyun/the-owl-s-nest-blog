@@ -1,7 +1,7 @@
 ---
 title: HTB | 1NF0-G4TH3R – DNS & Digging
 published: 2026-04-09
-description: ‫‫فهم DNS & dig واستخدامه في Web Recon.‬
+description: ‫‫Understanding DNS & dig and using them in Web Recon‬
 image: /images/posts/img_1NF0-G4TH3R/img_DNS&dig/DNS.wdmp
 tags: [DNS, dig, DNS Tools, Groping DNS]
 category: Information-Gathering Series

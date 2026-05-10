@@ -24,8 +24,8 @@ import { LinkPreset } from "./types/config";
 const SITE_LANG = "en"; // Language code, e.g.: 'en', 'zh_CN', 'ja', etc.
 const SITE_TIMEZONE = 8; // Set your website timezone from -12 to 12, default is UTC+8
 export const siteConfig: SiteConfig = {
-	title: "The Owl’s Nest",
-	subtitle: "Cybersecurity Blog",
+	title: "AbuElOyun",
+	subtitle: "The Owl’s Nest Blog",
 	siteURL: "https://the-owls-nest.netlify.app/", // Netlify site URL
 	siteStartDate: "2026-04-04", // Site start date, used for site statistics component to calculate running days
 
@@ -44,7 +44,7 @@ export const siteConfig: SiteConfig = {
 		diary: false, // Diary page toggle
 		friends: false, // Friends page toggle
 		projects: true, // Projects page toggle
-		skills: true, // Skills page toggle
+		skills: false, // Skills page toggle
 		timeline: false, // Timeline page toggle
 		albums: false, // Albums page toggle
 		devices: false, // Devices page toggle

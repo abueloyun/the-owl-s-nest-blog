@@ -1,7 +1,8 @@
 ---
 title: HTB | 1NF0-G4TH3R – Introduction
 published: 2026-04-04
-description: ‫مقدمة شاملة عن Web Reconnaissance وأنواعه الأساسية.‬
+description: ‫Comprehensive introduction to Web Reconnaissance and its core types
+image: /images/posts/img_1NF0-G4TH3R/img_Introduction/intro.jpg
 tags: [Active Recon, Passive Recon]
 category: Information-Gathering Series
 draft: false
@@ -9,19 +10,28 @@ pinned: false
 comment: true
 lang: ar
 ---
-
-‫<div dir="rtl">
 ‫
-# Web Reconnaissance – مقدمة
+# Introduction
 
-‫Web Reconnaissance أو Web Recon هو أول خطوة في أي عملية **penetration Testing**  
-وفيه بتبدأ تجمع معلومات عن الموقع المستهدف، والمرحلة دي تعتبر تحضيرية قبل ما نحاول نلاقي فيه ثغرات.
-‬
+<div dir="rtl">
+
+
+‫Web Reconnaissance أو Web Recon هو أول خطوة في أي عملية
+**penetration Testing**
+
+وفيه بتبدأ تجمع معلومات عن الموقع المستهدف، والمرحلة دي تعتبر تحضيرية قبل ما نحاول نلاقي فيه ثغرات
+
+</div>
+
+> `Our goal is not to get at the systems but to find all the ways to get there`
+  
 ---
-
-## ليه بنعمل Reconnaissance؟ وما الهدف منه؟
+## primary goals of web reconnaissance
 ‫
 ### • Identifying Assets
+
+<div dir="rtl">
+
 في المرحلة دي بنحاول نكتشف كل المكونات المتاحة الخاصة بالهدف،  
 واحنا هنا بنجمع كل حاجة ليها علاقة بالموقع.
 
@@ -31,10 +41,15 @@ lang: ar
 1. **Subdomains مختلفة**: مثل `admin.example.com` أو `api.example.com`
 2. **عناوين الـ IP** الخاصة بالموقع
 3. **التقنيات  المستخدمة**, هل الموقع بيستخدم `PHP` ولا `Node.JS`
+
+</div>
 ‬‬
----
+<p style="text-align: center;"><strong>. . .</strong></p>
 
 ### • Discovering Hidden Information
+
+<div dir="rtl">
+
 في المرحلة دي بندور على حاجات مش من المفروض تبقى ظاهرة، زي:  
 
 - معلومات حساسة مكشوفة بالخطأ  
@@ -43,9 +58,14 @@ lang: ar
 
 الحاجات دي بتعرفنا تفاصيل مهمة ونقاط دخول ممكنة للهجوم.
 
----
+</div>
+
+<p style="text-align: center;"><strong>. . .</strong></p>
 
 ### • Analysing the Attack Surface
+
+<div dir="rtl">
+
 هنا بنحدد كل الأماكن اللي المستخدم يقدر يتفاعل معها في الموقع، زي `(forms - APIs)`  
 
 الهدف من المرحلة دي مش إني أكتشف ثغرات مباشرة،  
@@ -59,17 +79,26 @@ lang: ar
 بإختصار:  
 **attack surface = تعرف أو تحدد "أهاجم منين"**
 
----
+</div>
+
+<p style="text-align: center;"><strong>. . .</strong></p>
 
 ### • Gathering Intelligence
+
+<div dir="rtl">
+
 هنا بنجمع معلومات نقدر نستغلها بعد كده في هجمات،  
 زي مثلاً:  
 لو لقيت **عناوين بريد إلكتروني**، بنحتفظ بيها، علشان لو قدرت بعد كده توصل لصفحة login،  
 تقدر تستخدم الإيميلات دي للدخول.
 
+</div>
+
 ---
 
 ## (Type of Reconnaissance)
+
+<div dir="rtl">
 
 احنا عندنا نوعين أساسين في **web reconnaissance**:  
 **Active و Passive**  
@@ -77,7 +106,9 @@ lang: ar
 وكل طريقة ليها مميزات وعيوب،  
 وفهم الفرق بينهم مهم جدًا علشان تجمع معلومات بشكل صحيح وفعال.
 
----
+</div>
+
+<p style="text-align: center;"><strong>. . .</strong></p>
 
 ### 1. Active Recon
 <div align="center">
@@ -85,6 +116,8 @@ lang: ar
 <img src="/images/posts/img_1NF0-G4TH3R/img_Introduction/Active.png" alt="Active Recon" width="300"/>
 
 </div>
+
+<div dir="rtl">
 
 النوع ده بيتطلب إنك تتفاعل مباشرة مع الهدف علشان تجمع معلومات.  
 
@@ -105,7 +138,9 @@ lang: ar
 **عيوبه:**  
 - بيبق في خطورة أعلي إنك يتم إكتشافك لأنك بتتعامل مع الهدف بشكل مباشر وده ممكن يعمل تنبيهات أو يثير الشك.
 
----
+</div>
+
+<p style="text-align: center;"><strong>. . .</strong></p>
 
 ### 2. Passive Recon
 <div align="center">
@@ -113,6 +148,8 @@ lang: ar
 <img src="/images/posts/img_1NF0-G4TH3R/img_Introduction/Passive.png" alt="Passive Recon" width="300"/>
 
 </div>
+
+<div dir="rtl">
 
 في النوع ده، انت بتجمع المعلومات **من غير ما تقرب للهدف** ولا تتفاعل معاه بشكل مباشر. 
 
@@ -133,4 +170,4 @@ lang: ar
 **عيوبه:**  
 - ممكن يديك معلومات أقل لأنه بيعتمد عل المتاح بالفعل بشكل عام.
 ‬
-</div>‬‬‬
+</div>

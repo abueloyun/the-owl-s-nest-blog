@@ -1,7 +1,7 @@
 ---
 title: HTB | 1NF0-G4TH3R – Whois
 published: 2026-04-06
-description: ‫دليل سريع لفهم WHOIS وتحليل بيانات الدومينات‬
+description: ‫Quick guide to understanding WHOIS and analyzing domain data‬
 image: /images/posts/img_1NF0-G4TH3R/img_WHOIS/Whois.jpeg
 tags: [Record WHOIS, WHOIS Lookup]
 category: Information-Gathering Series

@@ -2,7 +2,7 @@
 title: HTB | 1NF0-G4TH3R – Subdomain Enumeration
 published: 2026-04-26
 description: Discovering hidden subdomains and expanding the attack surface through passive and active reconnaissance techniques.
-image: /images/posts/img_1NF0-G4TH3R/img_SubdomainEnumeration/subdomain_enumeration.png
+image: /images/posts/img_1NF0-G4TH3R/img_SubdomainEnumeration/subdomain_enumeration2.png
 tags: [Subdomains, Subdomain Bruteforcing, DNS Zone Transfers, Virtual Hosts, CT Logs]
 category: Information-Gathering Series
 draft: false
@@ -415,7 +415,7 @@ done.
 ## How to zone transfer works
 
 
-<img src="/images/posts/img_1NF0-G4TH3R/Subdomain/dns_zone_transfers.png" alt="Zone Transfer">
+<img src="/images/posts/img_1NF0-G4TH3R/img_SubdomainEnumeration/dns_zone_transfers.png" alt="Zone Transfer">
 
 
 ### 1. Zone Transfer Request (AXFR) : 
@@ -574,6 +574,10 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 ---
 
+<img src="/images/posts/img_1NF0-G4TH3R/img_SubdomainEnumeration/streatch.webp" alt="streatch"/>
+
+---
+
 # Virtual Hosts
 
 <div dir="rtl">
@@ -608,7 +612,7 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 
 </div>
 
-<img src="/images/posts/img_1NF0-G4TH3R/Subdomain/subdomain.webp" alt="subdomain" align="center"/>
+<img src="/images/posts/img_1NF0-G4TH3R/img_SubdomainEnumeration/subdomain.webp" alt="subdomain" align="center"/>
 
 <div dir="rtl">
 
@@ -649,7 +653,7 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 </div>
 
 
-<img src="/images/posts/img_1NF0-G4TH3R/Subdomain/virtualhosts.png" alt="virtualhosts" align="center"/>
+<img src="/images/posts/img_1NF0-G4TH3R/img_SubdomainEnumeration/virtualhosts.png" alt="virtualhosts" align="center"/>
 
 
 ### 1. Browser Requests a Website :
@@ -732,7 +736,7 @@ canberra-office.zonetransfer.me. 7200 IN A  202.14.81.230
 ### The `gobuster` command to bruteforcevhosts generally looks like this :
 
 ```bash
-AbuEIOyun1@htb[/htb]$ gobuster vhost -u http://inlanefreight.htb:81 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
+AbuEIOyun1@kali[~]$ gobuster vhost -u http://inlanefreight.htb:81 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -863,7 +867,7 @@ Finished
 **Let's see how to find all 'dev' subdomains on `facebook.com` using `curl` and `jq`:**
 
 ```bash
-AbuElOyun@kali[~]$ curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[]
+AbuElOyun1@kali[~]$ curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[]
  | select(.name_value | contains("dev")) | .name_value' | sort -u
  
 *.dev.facebook.com
