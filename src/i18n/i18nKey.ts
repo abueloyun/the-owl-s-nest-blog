@@ -5,7 +5,7 @@ enum I18nKey {
 	search = "search",
 	other = "other",
 
-	// 导航栏标题
+	// Navbar titles
 	navLinks = "navLinks",
 	navMy = "navMy",
 	navAbout = "navAbout",
@@ -18,7 +18,7 @@ enum I18nKey {
 	tableOfContents = "tableOfContents",
 	tocEmpty = "tocEmpty",
 
-	// 公告栏
+	// Announcement
 	announcement = "announcement",
 	announcementClose = "announcementClose",
 
@@ -58,7 +58,7 @@ enum I18nKey {
 	anime = "anime",
 	diary = "diary",
 
-	// 番剧页面
+	// Anime page
 	animeTitle = "animeTitle",
 	animeSubtitle = "animeSubtitle",
 	animeStatusWatching = "animeStatusWatching",
@@ -76,7 +76,7 @@ enum I18nKey {
 	animeConfigBilibili = "animeConfigBilibili",
 	animeConfigBangumi = "animeConfigBangumi",
 
-	// 短文页面
+	// Diary page
 	diarySubtitle = "diarySubtitle",
 	diaryNoResults = "diaryNoResults",
 	diaryCount = "diaryCount",
@@ -86,13 +86,13 @@ enum I18nKey {
 	diaryHoursAgo = "diaryHoursAgo",
 	diaryDaysAgo = "diaryDaysAgo",
 
-	// 404页面
+	// 404 page
 	notFound = "notFound",
 	notFoundTitle = "notFoundTitle",
 	notFoundDescription = "notFoundDescription",
 	backToHome = "backToHome",
 
-	// 音乐播放器
+	// Music player
 	musicPlayer = "musicPlayer",
 	musicPlayerShow = "musicPlayerShow",
 	musicPlayerHide = "musicPlayerHide",
@@ -116,7 +116,7 @@ enum I18nKey {
 	unknownSong = "unknownSong",
 	unknownArtist = "unknownArtist",
 
-	// 相册页面
+	// Albums page
 	albums = "albums",
 	albumsSubtitle = "albumsSubtitle",
 	albumsEmpty = "albumsEmpty",
@@ -127,12 +127,12 @@ enum I18nKey {
 	albumsFilterAll = "albumsFilterAll",
 	albumsNoResults = "albumsNoResults",
 
-	// 设备页面
+	// Devices page
 	devices = "devices",
 	devicesSubtitle = "devicesSubtitle",
 	devicesViewDetails = "devicesViewDetails",
 
-	// 项目展示页面
+	// Projects page
 	projects = "projects",
 	projectsSubtitle = "projectsSubtitle",
 	projectsAll = "projectsAll",
@@ -208,7 +208,7 @@ enum I18nKey {
 	timelineStartDate = "timelineStartDate",
 	timelineDuration = "timelineDuration",
 
-	// 密码保护
+	// Password protection
 	passwordProtected = "passwordProtected",
 	passwordProtectedTitle = "passwordProtectedTitle",
 	passwordProtectedDescription = "passwordProtectedDescription",
@@ -229,7 +229,7 @@ enum I18nKey {
 	autoSyntaxHighlightFailed = "autoSyntaxHighlightFailed",
 	decryptionError = "decryptionError",
 
-	//最后编辑时间卡片
+	// Last edited card
 	lastModifiedPrefix = "lastModifiedPrefix",
 	lastModifiedOutdated = "lastModifiedOutdated",
 	year = "year",
@@ -279,7 +279,7 @@ enum I18nKey {
 	wallpaperFullscreen = "wallpaperFullscreen",
 	wallpaperNone = "wallpaperNone",
 
-	// 站点统计
+	// Site statistics
 	siteStats = "siteStats",
 	siteStatsPostCount = "siteStatsPostCount",
 	siteStatsCategoryCount = "siteStatsCategoryCount",
@@ -290,7 +290,7 @@ enum I18nKey {
 	siteStatsDaysAgo = "siteStatsDaysAgo",
 	siteStatsDays = "siteStatsDays",
 
-	// 日历组件
+	// Calendar component
 	calendarSunday = "calendarSunday",
 	calendarMonday = "calendarMonday",
 	calendarTuesday = "calendarTuesday",
@@ -311,7 +311,7 @@ enum I18nKey {
 	calendarNovember = "calendarNovember",
 	calendarDecember = "calendarDecember",
 
-	// 分享功能
+	// Share functionality
 	shareArticle = "shareArticle",
 	generatingPoster = "generatingPoster",
 	copied = "copied",
@@ -321,21 +321,21 @@ enum I18nKey {
 	shareOnSocial = "shareOnSocial",
 	shareOnSocialDescription = "shareOnSocialDescription",
 
-	// 个人资料统计
+	// Profile statistics
 	profileStatsLoading = "profileStatsLoading",
 	profileStatsPageViews = "profileStatsPageViews",
 	profileStatsVisits = "profileStatsVisits",
 	profileStatsUnavailable = "profileStatsUnavailable",
 
-	// 页面访问量统计
+	// Page views statistics
 	pageViewsLoading = "pageViewsLoading",
 	pageViewsUnavailable = "pageViewsUnavailable",
 
-	// 布局切换按钮
+	// Layout switch buttons
 	switchToGridMode = "switchToGridMode",
 	switchToListMode = "switchToListMode",
 
-	// 相关文章与随机文章
+	// Related and random posts
 	relatedPosts = "relatedPosts",
 	randomPosts = "randomPosts",
 	smartRecommend = "smartRecommend",

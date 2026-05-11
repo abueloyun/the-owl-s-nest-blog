@@ -6,7 +6,7 @@ import type {
 } from "../types/config";
 
 /**
- * 组件映射表 - 将组件类型映射到实际的组件路径
+ * Component mapping table - maps component types to actual component paths
  */
 export const WIDGET_COMPONENT_MAP = {
 	profile: "../components/widgets/profile/Profile.astro",
@@ -23,8 +23,8 @@ export const WIDGET_COMPONENT_MAP = {
 } as const;
 
 /**
- * 组件管理器类
- * 负责管理侧边栏组件的动态加载、排序和渲染
+ * Widget manager class
+ * Responsible for managing dynamic loading, sorting, and rendering of sidebar components
  */
 export class WidgetManager {
 	private config: SidebarLayoutConfig;
@@ -34,17 +34,17 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 获取配置
+	 * Get configuration
 	 */
 	getConfig(): SidebarLayoutConfig {
 		return this.config;
 	}
 
 	/**
-	 * 根据位置获取组件列表
-	 * @param position 组件位置：'top' | 'sticky'
-	 * @param sidebar 侧边栏位置（可选）：'left' | 'right' | 'drawer'
-	 * @param deviceType 设备类型（可选）：'mobile' | 'tablet' | 'desktop'
+	 * Get component list by position
+	 * @param position Component position: 'top' | 'sticky'
+	 * @param sidebar Sidebar position (optional): 'left' | 'right' | 'drawer'
+	 * @param deviceType Device type (optional): 'mobile' | 'tablet' | 'desktop'
 	 */
 	getComponentsByPosition(
 		position: "top" | "sticky",
@@ -53,11 +53,11 @@ export class WidgetManager {
 	): WidgetComponentConfig[] {
 		let activeSidebar = sidebar;
 
-		// 手机端逻辑：完全由 drawer 决定，不合并左右侧栏
+		// Mobile logic: entirely determined by drawer, do not merge left and right sidebars
 		if (deviceType === "mobile") {
 			activeSidebar = "drawer";
 		}
-		// 平板端逻辑：在左侧有配置组件的情况下仅保留左侧组件，左侧没有配置组件时则将右侧的组件移到左侧
+		// Tablet logic: keep left components only when left sidebar has configured components, otherwise move right components to left
 		else if (deviceType === "tablet") {
 			if (sidebar === "right") {
 				return [];
@@ -78,7 +78,7 @@ export class WidgetManager {
 				if (prop && prop.position === position) {
 					return prop;
 				}
-				// 如果没有在 properties 中找到配置，且位置匹配默认的 top，则返回一个基础配置
+				// If not found in properties and position matches default top, return a basic configuration
 				if (!prop && position === "top") {
 					return { type, position: "top" } as WidgetComponentConfig;
 				}
@@ -88,9 +88,9 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 获取组件的动画延迟时间
-	 * @param component 组件配置
-	 * @param index 组件在列表中的索引
+	 * Get component animation delay
+	 * @param component Component configuration
+	 * @param index Component index in the list
 	 */
 	getAnimationDelay(component: WidgetComponentConfig, index: number): number {
 		if (component.animationDelay !== undefined) {
@@ -108,9 +108,9 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 获取组件的CSS类名
-	 * @param component 组件配置
-	 * @param index 组件在列表中的索引
+	 * Get component CSS class names
+	 * @param component Component configuration
+	 * @param index Component index in the list
 	 */
 	getComponentClass(
 		component: WidgetComponentConfig,
@@ -118,12 +118,12 @@ export class WidgetManager {
 	): string {
 		const classes: string[] = [];
 
-		// 添加基础类名
+		// Add base class name
 		if (component.class) {
 			classes.push(component.class);
 		}
 
-		// 添加响应式隐藏类名
+		// Add responsive hidden class names
 		if (component.responsive?.hidden) {
 			component.responsive.hidden.forEach((device) => {
 				switch (device) {
@@ -144,19 +144,19 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 获取组件的内联样式
-	 * @param component 组件配置
-	 * @param index 组件在列表中的索引
+	 * Get component inline styles
+	 * @param component Component configuration
+	 * @param index Component index in the list
 	 */
 	getComponentStyle(component: WidgetComponentConfig, index: number): string {
 		const styles: string[] = [];
 
-		// 添加自定义样式
+		// Add custom styles
 		if (component.style) {
 			styles.push(component.style);
 		}
 
-		// 添加动画延迟样式
+		// Add animation delay styles
 		const animationDelay = this.getAnimationDelay(component, index);
 		if (animationDelay > 0) {
 			styles.push(`animation-delay: ${animationDelay}ms`);
@@ -166,9 +166,9 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 检查组件是否应该折叠
-	 * @param component 组件配置
-	 * @param itemCount 组件内容项数量
+	 * Check if component should be collapsed
+	 * @param component Component configuration
+	 * @param itemCount Number of component content items
 	 */
 	isCollapsed(component: WidgetComponentConfig, itemCount: number): boolean {
 		if (!component.responsive?.collapseThreshold) {
@@ -178,16 +178,16 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 获取组件的路径
-	 * @param componentType 组件类型
+	 * Get component path
+	 * @param componentType Component type
 	 */
 	getComponentPath(componentType: WidgetComponentType): string | null {
 		return WIDGET_COMPONENT_MAP[componentType];
 	}
 
 	/**
-	 * 检查当前设备是否应该显示侧边栏
-	 * @param deviceType 设备类型
+	 * Check if sidebar should be shown on current device
+	 * @param deviceType Device type
 	 */
 	shouldShowSidebar(deviceType: "mobile" | "tablet" | "desktop"): boolean {
 		if (deviceType === "mobile") {
@@ -207,24 +207,24 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 获取设备断点配置
+	 * Get device breakpoint configuration
 	 */
 	getBreakpoints() {
 		return this.config.responsive.breakpoints;
 	}
 
 	/**
-	 * 更新组件配置
-	 * @param newConfig 新的配置
+	 * Update component configuration
+	 * @param newConfig New configuration
 	 */
 	updateConfig(newConfig: Partial<SidebarLayoutConfig>): void {
 		this.config = { ...this.config, ...newConfig };
 	}
 
 	/**
-	 * 添加新组件到布局中
-	 * @param type 组件类型
-	 * @param sidebar 侧边栏位置
+	 * Add new component to layout
+	 * @param type Component type
+	 * @param sidebar Sidebar position
 	 */
 	addComponentToLayout(
 		type: WidgetComponentType,
@@ -236,8 +236,8 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 从布局中移除组件
-	 * @param type 组件类型
+	 * Remove component from layout
+	 * @param type Component type
 	 */
 	removeComponentFromLayout(type: WidgetComponentType): void {
 		this.config.components.left = this.config.components.left.filter(
@@ -252,23 +252,23 @@ export class WidgetManager {
 	}
 
 	/**
-	 * 检查组件是否应该在侧边栏中渲染
-	 * @param componentType 组件类型
+	 * Check if component should be rendered in sidebar
+	 * @param componentType Component type
 	 */
 	isSidebarComponent(componentType: WidgetComponentType): boolean {
-		// Pio 组件是全局组件，不在侧边栏中渲染
+		// Pio component is a global component, not rendered in sidebar
 		return componentType !== "pio";
 	}
 }
 
 /**
- * 默认组件管理器实例
+ * Default widget manager instance
  */
 export const widgetManager = new WidgetManager();
 
 /**
- * 工具函数：根据组件类型获取组件配置
- * @param componentType 组件类型
+ * Utility function: Get component configuration by type
+ * @param componentType Component type
  */
 export function getComponentConfig(
 	componentType: WidgetComponentType,
@@ -279,8 +279,8 @@ export function getComponentConfig(
 }
 
 /**
- * 工具函数：检查组件是否启用
- * @param componentType 组件类型
+ * Utility function: Check if component is enabled
+ * @param componentType Component type
  */
 export function isComponentEnabled(
 	componentType: WidgetComponentType,
@@ -294,7 +294,7 @@ export function isComponentEnabled(
 }
 
 /**
- * 工具函数：获取所有启用的组件类型(左侧边栏为主)
+ * Utility function: Get all enabled component types (left sidebar as main)
  */
 export function getEnabledComponentTypes(): WidgetComponentType[] {
 	return widgetManager.getConfig().components.left;

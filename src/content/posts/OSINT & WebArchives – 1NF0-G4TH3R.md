@@ -122,7 +122,7 @@ lang: ar
 
 </div>
 
----
+<p style="text-align: center;"><strong>. . .</strong></p>
 
 ## What is the Wayback Machine?
 

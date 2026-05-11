@@ -1,10 +1,10 @@
 ---
 /**
- * 处理 permalink 的文章（包括全局 permalink 和自定义 permalink）
- * 全局 permalink 启用时，所有文章链接在根目录下生成
- * 例如：%post_id% => /1/, %year%-%postname% => /2024-my-post/
- * 自定义 permalink 也在根目录下
- * 例如：permalink: "custom-page" => /custom-page/
+ * Handle posts with permalink (including global permalink and custom permalink)
+ * When global permalink is enabled, all post links are generated under root
+ * Example: %post_id% => /1/, %year%-%postname% => /2024-my-post/
+ * Custom permalink is also under root
+ * Example: permalink: "custom-page" => /custom-page/
  */
 import Image from "@components/atoms/Image/Image.astro";
 import Comment from "@components/comment/index.astro";
@@ -40,7 +40,7 @@ import { formatDateToYYYYMMDD } from "../utils/date-utils";
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
 
-	// 初始化文章 ID 映射
+	// Initialize post ID mapping
 	initPostIdMap(blogEntries);
 
 	const paths: {
@@ -51,18 +51,18 @@ export async function getStaticPaths() {
 	for (const entry of blogEntries) {
 		let permalink: string | null = null;
 
-		// 优先使用自定义 permalink
+		// Use custom permalink first
 		if (hasCustomPermalink(entry)) {
 			permalink = entry.data
 				.permalink!.replace(/^\/+/, "")
 				.replace(/\/+$/, "");
 		}
-		// 其次使用全局 permalink（如果启用）
+		// Then use global permalink (if enabled)
 		else if (permalinkConfig.enable) {
 			permalink = generatePermalinkSlug(entry);
 		}
 
-		// 只处理有 permalink 的文章
+		// Only process posts with permalink
 		if (permalink) {
 			paths.push({
 				params: { permalink },
@@ -79,7 +79,7 @@ const { Content, headings } = await render(entry);
 
 const { remarkPluginFrontmatter } = await render(entry);
 
-// 处理加密逻辑
+// Handle encryption logic
 let encryptedContent = "";
 const isEncrypted = entry.data.encrypted && entry.data.password;
 

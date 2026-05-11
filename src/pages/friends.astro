@@ -47,9 +47,9 @@ const allTags = Array.from(new Set(friendsList.flatMap((item) => item.tags)));
 				subtitle={i18n(I18nKey.friendsSubtitle)}
 			/>
 
-			<!-- 搜索和筛选栏 -->
+			<!-- Search and filter bar -->
 			<div class="mb-6 space-y-3">
-				<!-- 搜索框 -->
+				<!-- Search box -->
 				<div class="w-full">
 					<div class="relative">
 						<input
@@ -78,7 +78,7 @@ const allTags = Array.from(new Set(friendsList.flatMap((item) => item.tags)));
 					</div>
 				</div>
 
-				<!-- 标签筛选 -->
+				<!-- Tag filter -->
 				<div class="filter-container flex flex-wrap gap-2">
 					<button class="filter-tag active" data-tag="all">
 						{i18n(I18nKey.friendsFilterAll)}
@@ -93,7 +93,7 @@ const allTags = Array.from(new Set(friendsList.flatMap((item) => item.tags)));
 				</div>
 			</div>
 
-			<!-- 友链卡片网格 -->
+			<!-- Friend card grid -->
 			<div
 				id="friends-grid"
 				class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-6"
@@ -101,7 +101,7 @@ const allTags = Array.from(new Set(friendsList.flatMap((item) => item.tags)));
 				{friendsList.map((item) => <FriendCard friend={item} />)}
 			</div>
 
-			<!-- 无结果提示 -->
+			<!-- No results prompt -->
 			<div id="no-results" class="hidden text-center py-12">
 				<svg
 					class="w-16 h-16 mx-auto mb-4 text-black/20 dark:text-white/20"
@@ -121,29 +121,29 @@ const allTags = Array.from(new Set(friendsList.flatMap((item) => item.tags)));
 				</p>
 			</div>
 
-			<!-- 说明文档 -->
+			<!-- Description document -->
 			<Markdown class="mt-8 prose dark:prose-invert max-w-none">
 				<Content />
 			</Markdown>
 
-			<!-- 隐藏元素用于传递 i18n 文本到全局脚本 -->
+			<!-- Hidden elements for passing i18n text to global scripts -->
 			<div id="friends-copy-success-text" style="display: none;">
 				{i18n(I18nKey.friendsCopySuccess)}
 			</div>
 		</div>
 	</div>
 
-	<!-- 引用全局脚本 -->
+	<!-- Reference global scripts -->
 	<script is:inline src="/js/friends-page-handler.js"></script>
 </MainGridLayout>
 
 <style>
-	/* 搜索框焦点效果 */
+	/* Search box focus effect */
 	#friend-search:focus {
 		box-shadow: 0 0 0 3px var(--primary) / 0.1;
 	}
 
-	/* 标签筛选按钮样式 */
+	/* Tag filter button styles */
 	.filter-container {
 		display: flex;
 		flex-wrap: wrap;

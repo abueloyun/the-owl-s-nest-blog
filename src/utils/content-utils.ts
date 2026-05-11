@@ -11,7 +11,7 @@ async function getRawSortedPosts() {
 	});
 
 	const sorted = allBlogPosts.sort((a, b) => {
-		// 首先按置顶状态排序，置顶文章在前
+		// First sort by pinned status, pinned posts first
 		if (a.data.pinned && !b.data.pinned) {
 			return -1;
 		}
@@ -19,7 +19,7 @@ async function getRawSortedPosts() {
 			return 1;
 		}
 
-		// 如果置顶状态相同，优先按 Priority 排序（数值越小越靠前）
+		// If pinned status is the same, sort by Priority (smaller value comes first)
 		if (a.data.pinned && b.data.pinned) {
 			const priorityA = a.data.priority;
 			const priorityB = b.data.priority;
@@ -34,7 +34,7 @@ async function getRawSortedPosts() {
 			}
 		}
 
-		// 否则按发布日期排序
+		// Otherwise sort by publication date
 		const dateA = new Date(a.data.published);
 		const dateB = new Date(b.data.published);
 		return dateA > dateB ? -1 : 1;
@@ -59,15 +59,15 @@ export async function getSortedPosts() {
 export interface PostForList {
 	id: string;
 	data: CollectionEntry<"posts">["data"];
-	url?: string; // 预计算的文章 URL
+	url?: string; // Pre-calculated post URL
 }
 export async function getSortedPostsList(): Promise<PostForList[]> {
 	const sortedFullPosts = await getRawSortedPosts();
 
-	// 初始化文章 ID 映射（用于 permalink 功能）
+	// Initialize post ID mapping (for permalink feature)
 	initPostIdMap(sortedFullPosts);
 
-	// delete post.body，并预计算 URL
+	// Delete post.body and pre-calculate URL
 	const sortedPostsList = sortedFullPosts.map((post) => ({
 		id: post.id,
 		data: post.data,
@@ -96,7 +96,7 @@ export async function getTagList(): Promise<Tag[]> {
 		});
 	});
 
-	// sort tags
+	// Sort tags
 	const keys: string[] = Object.keys(countMap).sort((a, b) => {
 		return a.toLowerCase().localeCompare(b.toLowerCase());
 	});
@@ -146,25 +146,25 @@ export async function getCategoryList(): Promise<Category[]> {
 }
 
 /**
- * 对标题进行分词，支持中英文混合
+ * Tokenize the title, supporting Chinese and English mixed
  *
- * - 优先使用 Intl.Segmenter（在支持的运行时中效果更好）
- * - 在不支持 Segmenter 的环境（如部分 Node 运行时）下
- *   回退到基于正则的简单分词，以避免构建报错
- * - 过滤标点和空白，英文统一小写
+ * - Prefer Intl.Segmenter (works better in supported runtimes)
+ * - Fall back to regex-based simple tokenization in environments
+ *   without Segmenter (e.g., some Node runtimes) to avoid build errors
+ * - Filter punctuation and whitespace, lowercase English
  */
 function tokenizeTitle(title: string): Set<string> {
 	const tokens = new Set<string>();
 
-	// 运行时可能不支持 Intl.Segmenter（例如部分 Node 环境）
-	// 为了避免 SSR/构建时报错，这里做兼容处理
+	// Runtime may not support Intl.Segmenter (e.g., some Node environments)
+	// Add compatibility handling to avoid SSR/build errors
 	const hasSegmenter =
 		typeof Intl !== "undefined" &&
 		"Segmenter" in Intl &&
 		typeof (Intl as any).Segmenter === "function";
 
 	if (!hasSegmenter) {
-		// 简单回退方案：按照空白和标点拆分
+		// Simple fallback: split by whitespace and punctuation
 		const basicTokens = title
 			.toLowerCase()
 			.split(/[\s\p{P}]+/gu)
@@ -175,7 +175,7 @@ function tokenizeTitle(title: string): Set<string> {
 		return tokens;
 	}
 
-	// 使用 Intl.Segmenter 进行更精细的中英文混合分词
+	// Use Intl.Segmenter for more precise Chinese and English mixed tokenization
 	const segmenter = new (Intl as any).Segmenter("zh", {
 		granularity: "word",
 	});
@@ -189,7 +189,7 @@ function tokenizeTitle(title: string): Set<string> {
 }
 
 /**
- * 计算两个集合的 Jaccard 相似度
+ * Calculate the Jaccard similarity between two sets
  */
 function jaccardSimilarity(a: Set<string>, b: Set<string>): number {
 	if (a.size === 0 && b.size === 0) {
@@ -206,12 +206,12 @@ function jaccardSimilarity(a: Set<string>, b: Set<string>): number {
 }
 
 /**
- * 获取相关文章推荐
- * 评分公式: totalScore = tagMatchScore + titleSimilarityScore + timeFreshnessScore + categoryBonus
- * - tagMatchScore (0-100): 标签 Jaccard 相似度 × 100
- * - titleSimilarityScore (0-100): 标题分词 Jaccard 相似度 × 100
- * - timeFreshnessScore (0-30): 6 个月半衰期指数衰减
- * - categoryBonus (0 or 10): 同分类加 10 分
+ * Get related posts recommendations
+ * Scoring formula: totalScore = tagMatchScore + titleSimilarityScore + timeFreshnessScore + categoryBonus
+ * - tagMatchScore (0-100): Tags Jaccard similarity × 100
+ * - titleSimilarityScore (0-100): Title token Jaccard similarity × 100
+ * - timeFreshnessScore (0-30): 6-month half-life exponential decay
+ * - categoryBonus (0 or 10): Same category +10 points
  */
 export async function getRelatedPosts(
 	currentPost: CollectionEntry<"posts">,
@@ -221,7 +221,7 @@ export async function getRelatedPosts(
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 
-	// 排除自身和加密文章
+	// Exclude self and encrypted posts
 	const candidates = allPosts.filter(
 		(p) => p.id !== currentPost.id && !p.data.password,
 	);
@@ -242,7 +242,7 @@ export async function getRelatedPosts(
 		const titleSimilarityScore =
 			jaccardSimilarity(currentTokens, postTokens) * 100;
 
-		// timeFreshnessScore (0-30): 6 个月半衰期
+		// timeFreshnessScore (0-30): 6-month half-life
 		const daysSincePublished =
 			(now - new Date(post.data.published).getTime()) /
 			(1000 * 60 * 60 * 24);
@@ -271,10 +271,10 @@ export async function getRelatedPosts(
 		};
 	});
 
-	// 按总分降序排列
+	// Sort by total score in descending order
 	scored.sort((a, b) => b.totalScore - a.totalScore);
 
-	// 优先取有标签匹配的
+	// Prioritize posts with tag matches
 	const withTagMatch = scored.filter((s) => s.tagMatchScore > 0);
 	const withoutTagMatch = scored.filter((s) => s.tagMatchScore === 0);
 
@@ -287,7 +287,7 @@ export async function getRelatedPosts(
 		result.push({ id: s.post.id, data: s.post.data });
 	}
 
-	// 不足时从剩余候选中按 timeFreshnessScore + categoryBonus 降序补充
+	// When insufficient, supplement from remaining candidates by timeFreshnessScore + categoryBonus in descending order
 	if (result.length < maxCount) {
 		withoutTagMatch.sort(
 			(a, b) =>

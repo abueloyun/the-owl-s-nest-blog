@@ -1,7 +1,7 @@
 ---
 import ConfigCarrier from "@components/misc/ConfigCarrier.astro";
 import MusicPlayer from "@components/widgets/music-player/MusicPlayer.svelte";
-import Pio from "@components/features/pio/Pio.svelte"; // 使用 Svelte 版本的 Pio 组件
+import Pio from "@components/features/pio/Pio.svelte"; // Use Svelte version of Pio component
 import { PageProgressBar } from "@components/control/PageProgressBar";
 import { pioConfig, profileConfig, siteConfig } from "@/config";
 
@@ -18,7 +18,7 @@ import "../styles/fancybox-custom.css";
 import "../styles/expressive-code.css";
 import "../styles/panel-animations.css";
 
-// 导入新提取的 Head 组件
+// Import extracted Head components
 import AnalyticsScripts from "./partials/AnalyticsScripts.astro";
 import HeadTags from "./partials/HeadTags.astro";
 
@@ -43,15 +43,15 @@ const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
 const configHue = siteConfig.themeColor.hue;
 
-// 获取导航栏透明模式配置
+// Get navbar transparent mode configuration
 const navbarTransparentMode =
 	siteConfig.banner?.navbar?.transparentMode || "semi";
 
-// 判断是否应该显示顶部高光效果（只在full和semifull模式下显示）
+// Determine whether to show top highlight effect (only shown in full and semifull modes)
 const shouldShowTopHighlight =
 	navbarTransparentMode === "full" || navbarTransparentMode === "semifull";
 
-// 获取默认banner图片的辅助函数
+// Helper function to get default banner image
 const getDefaultBanner = (): string => {
 	const src = siteConfig.banner.src;
 	if (typeof src === "string") {
@@ -61,7 +61,7 @@ const getDefaultBanner = (): string => {
 		return src[0] || "";
 	}
 	if (src && typeof src === "object") {
-		// 优先使用desktop，如果没有则使用mobile
+		// Prefer desktop, fallback to mobile
 		const desktopSrc = src.desktop;
 		const mobileSrc = src.mobile;
 		if (typeof desktopSrc === "string") {
@@ -117,24 +117,24 @@ const bannerOffsetByPosition = {
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
 
-// 构建字体配置的 CSS 变量
-// ASCII 字体优先级最高（用于英文、数字等），CJK 字体作为回退
+// Build CSS variables for font configuration
+// ASCII fonts have highest priority (for English, numbers, etc.), CJK fonts as fallback
 let bodyFontFamily = "";
 if (siteConfig.font) {
 	const fonts: string[] = [];
-	// 先添加 ASCII 字体（优先级最高）
+	// Add ASCII fonts first (highest priority)
 	if (siteConfig.font.asciiFont?.fontFamily) {
 		const asciiFont = siteConfig.font.asciiFont.fontFamily;
-		// 如果字体名包含空格，需要用引号包围
+		// If font name contains spaces, need to wrap with quotes
 		fonts.push(asciiFont.includes(" ") ? `"${asciiFont}"` : asciiFont);
 	}
-	// 再添加 CJK 字体（作为回退）
+	// Add CJK fonts (as fallback)
 	if (siteConfig.font.cjkFont?.fontFamily) {
 		const cjkFont = siteConfig.font.cjkFont.fontFamily;
-		// 如果字体名包含空格，需要用引号包围
+		// If font name contains spaces, need to wrap with quotes
 		fonts.push(cjkFont.includes(" ") ? `"${cjkFont}"` : cjkFont);
 	}
-	// 添加系统字体作为最终回退
+	// Add system fonts as final fallback
 	fonts.push(
 		"system-ui",
 		"-apple-system",
@@ -148,7 +148,7 @@ if (siteConfig.font) {
 		"'Helvetica Neue'",
 		"sans-serif",
 	);
-	// 组合成完整的 font-family 字符串
+	// Combine into complete font-family string
 	bodyFontFamily = fonts.join(", ");
 }
 ---
@@ -162,7 +162,7 @@ if (siteConfig.font) {
 	<head>
 		<meta charset="UTF-8" />
 
-		<!-- 第三方分析脚本 -->
+		<!-- Third-party analytics scripts -->
 		<!-- <AnalyticsScripts
 			thirdPartyAnalytics={siteConfig.thirdPartyAnalytics}
 		/> -->
@@ -187,7 +187,7 @@ if (siteConfig.font) {
 			}}
 		></style>
 
-		<!-- Pio 看板娘样式 - 非渲染阻塞加载 -->
+		<!-- Pio mascot styles - non-render-blocking load -->
 		{
 			pioConfig.enable && (
 				<Fragment
@@ -218,7 +218,7 @@ if (siteConfig.font) {
 				width="0"
 				style="display:none;visibility:hidden"></iframe></noscript
 		>
-		<!-- 页面顶部渐变高光效果 - 只在full和semifull模式下显示 -->
+		<!-- Page top gradient highlight effect - only shown in full and semifull modes -->
 		{shouldShowTopHighlight && <div class="top-gradient-highlight" />}
 
 		<ConfigCarrier />
@@ -229,10 +229,10 @@ if (siteConfig.font) {
 		/>
 		<slot />
 
-		<!-- Music Player - 核心始终加载（当enable=true），UI通过showFloatingPlayer控制 -->
+		<!-- Music Player - core always loaded (when enable=true), UI controlled by showFloatingPlayer -->
 		<MusicPlayer client:idle />
 
-		<!-- Pio 看板娘组件 - 仅在进入视口时加载 -->
+		<!-- Pio mascot component - load only when entering viewport -->
 		{pioConfig.enable && <Pio client:visible />}
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
@@ -277,7 +277,7 @@ if (siteConfig.font) {
 			}
 		}
 
-		/* Water waves animation - GPU 加速优化 */
+		/* Water waves animation - GPU acceleration optimization */
 		.waves > .parallax use {
 			animation: wave 25s cubic-bezier(0.5, 0.5, 0.45, 0.5) infinite;
 			transform: translateZ(0);
@@ -312,20 +312,20 @@ if (siteConfig.font) {
 </style>
 
 <script>
-	// Swup 页面过渡管理器 - 统一入口
-	// 所有功能已重构为模块化架构，详见 src/scripts/ 目录
+	// Swup page transition manager - unified entry point
+	// All features have been refactored to modular architecture, see src/scripts/ directory
 	import { initSwupManager } from "../scripts/swup-manager";
 
-	// 初始化 Swup 管理器
+	// Initialize Swup manager
 	initSwupManager();
 </script>
 
-<!-- 代码块折叠功能 -->
+<!-- Code block collapse functionality -->
 <script>
 	import "../scripts/code-collapse.js";
 </script>
 
-<!-- 主题切换综合性能优化器（包含代码块优化、重型元素优化、性能诊断） -->
+<!-- Theme switching comprehensive performance optimizer (includes code block optimization, heavy element optimization, performance diagnostics) -->
 <script>
 	import "../scripts/theme-optimizer.js";
 </script>

@@ -1,5 +1,5 @@
 ---
-// 只加载基础的等宽字体，减少加载时间
+// Only load basic monospace font to reduce loading time
 import "@fontsource-variable/jetbrains-mono";
 
 interface Props {
@@ -23,24 +23,24 @@ const className = Astro.props.class;
 		if (target && target.classList.contains("copy-btn")) {
 			const codeEle = target.parentElement?.querySelector("code");
 
-			// 精确的代码提取逻辑
+			// Precise code extraction logic
 			let code = "";
 			if (codeEle) {
-				// 获取所有代码行元素
+				// Get all code line elements
 				const lineElements = codeEle.querySelectorAll("span.line");
 				if (lineElements.length > 0) {
-					// 对于有行结构的代码块，精确处理每一行
+					// For code blocks with line structure, process each line precisely
 					const lines: string[] = [];
 					for (let i = 0; i < lineElements.length; i++) {
 						const lineElement = lineElements[i];
-						// 直接获取文本内容，不添加额外处理
+						// Directly get text content without additional processing
 						const lineText = lineElement.textContent || "";
 						lines.push(lineText);
 					}
-					// 重要：使用 \n 连接行，而不是 \n\n 或其他方式
+					// Important: Use \n to join lines, not \n\n or other methods
 					code = lines.join("\n");
 				} else {
-					// 对于没有行结构的代码块
+					// For code blocks without line structure
 					const codeElements = codeEle.querySelectorAll(
 						".code:not(summary *)",
 					);
@@ -53,51 +53,51 @@ const className = Astro.props.class;
 						}
 						code = lines.join("\n");
 					} else {
-						// 最后回退到直接使用整个code元素的文本内容
+						// Finally fallback to directly using the entire code element's text content
 						code = codeEle.textContent || "";
 					}
 				}
 			}
 
-			// 处理连续空行：改进的逻辑
+			// Handle consecutive empty lines: improved logic
 			code = code.replace(/\n\n\n+/g, function (match) {
-				// 计算连续换行符的数量
+				// Calculate the number of consecutive newline characters
 				const newlineCount = match.length;
-				// 计算空行数量（换行符数量减1）
+				// Calculate empty line count (newline count minus 1)
 				const emptyLineCount = newlineCount - 1;
 
-				// 偶数空行：除以2
-				// 奇数空行：(空行数+1)/2 向下取整
+				// Even empty lines: divide by 2
+				// Odd empty lines: (empty line count + 1)/2 floor division
 				let resultEmptyLines: number;
 				if (emptyLineCount % 2 === 0) {
-					// 偶数
+					// Even
 					resultEmptyLines = emptyLineCount / 2;
 				} else {
-					// 奇数
+					// Odd
 					resultEmptyLines = Math.floor((emptyLineCount + 1) / 2);
 				}
 
-				// 至少保留一个空行
+				// Keep at least one empty line
 				if (resultEmptyLines < 1) {
 					resultEmptyLines = 1;
 				}
 
-				// 返回对应数量的换行符
+				// Return corresponding number of newline characters
 				return "\n".repeat(resultEmptyLines + 1);
 			});
 
-			// 尝试多种复制方法
+			// Try multiple copy methods
 			const copyToClipboard = async (text: string) => {
 				try {
-					// 优先使用 Clipboard API
+					// Prefer using Clipboard API
 					await navigator.clipboard.writeText(text);
 				} catch (clipboardErr) {
 					console.warn(
-						"Clipboard API 失败，尝试备用方案:",
+						"Clipboard API failed, trying fallback:",
 						clipboardErr,
 					);
 
-					// 备用方案：使用 document.execCommand
+					// Fallback: Use document.execCommand
 					const textArea = document.createElement("textarea");
 					textArea.value = text;
 					textArea.style.position = "fixed";
@@ -112,11 +112,11 @@ const className = Astro.props.class;
 						// const successful = document.execCommand('copy');
 						const successful = true; // document.execCommand is deprecated
 						if (!successful) {
-							throw new Error("execCommand 返回 false");
+							throw new Error("execCommand returned false");
 						}
 					} catch (execErr) {
-						console.error("execCommand 也失败了:", execErr);
-						throw new Error("所有复制方法都失败了");
+						console.error("execCommand also failed:", execErr);
+						throw new Error("All copy methods failed");
 					} finally {
 						document.body.removeChild(textArea);
 					}
@@ -132,7 +132,7 @@ const className = Astro.props.class;
 
 					target.classList.add("success");
 
-					// 设置新的timeout并保存ID到按钮的自定义属性中
+					// Set new timeout and save ID to button's custom attribute
 					const newTimeoutId = setTimeout(() => {
 						target.classList.remove("success");
 					}, 1000);
@@ -143,8 +143,8 @@ const className = Astro.props.class;
 					);
 				})
 				.catch((err) => {
-					console.error("复制失败:", err);
-					// 可以在这里添加用户提示
+					console.error("Copy failed:", err);
+					// Can add user notification here
 				});
 		}
 	});

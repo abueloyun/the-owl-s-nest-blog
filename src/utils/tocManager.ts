@@ -1,7 +1,7 @@
 /**
- * TOC (Table of Contents) 工具类
- * 用于 CardTOC 的 TOC 逻辑
- * 基于 Firefly 项目的 TOCManager 实现
+ * TOC (Table of Contents) utility class
+ * TOC logic for CardTOC
+ * Based on TOCManager implementation from Firefly project
  */
 
 import I18nKey from "../i18n/i18nKey";
@@ -32,8 +32,8 @@ export class TOCManager {
 	}
 
 	/**
-	 * 获取当前实例绑定的 TOC 容器。
-	 * 优先使用实例级元素引用，避免多实例时因为重复 id 命中错误节点。
+	 * Get the TOC container bound to the current instance.
+	 * Prioritize instance-level element references to avoid hitting wrong nodes due to duplicate ids in multi-instance scenarios.
 	 */
 	private getTOCContentElement(): HTMLElement | null {
 		if (this.contentElement) {
@@ -48,8 +48,8 @@ export class TOCManager {
 	}
 
 	/**
-	 * 获取当前实例内部的活动指示器。
-	 * 指示器限定在当前内容容器内查询，避免多个目录组件互相污染。
+	 * Get the active indicator within the current instance.
+	 * The indicator is limited to query within the current content container to avoid interference between multiple TOC components.
 	 */
 	private getIndicatorElement(): HTMLElement | null {
 		return this.getTOCContentElement()?.querySelector(

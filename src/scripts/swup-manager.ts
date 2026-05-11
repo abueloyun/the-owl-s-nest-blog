@@ -80,7 +80,7 @@ export class SwupManager {
 		this.initPreloading();
 
 		this.initialized = true;
-		console.log("SwupManager: 初始化完成");
+		console.log("SwupManager: Initialization completed");
 	}
 
 	/**
@@ -90,7 +90,10 @@ export class SwupManager {
 		try {
 			await initPanelHandler();
 		} catch (error) {
-			console.error("SwupManager: 面板处理器初始化失败", error);
+			console.error(
+				"SwupManager: Panel handler initialization failed",
+				error,
+			);
 		}
 	}
 

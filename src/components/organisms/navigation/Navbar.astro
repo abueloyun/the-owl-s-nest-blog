@@ -16,15 +16,15 @@ import Search from "./Search.svelte"
 
 const className = Astro.props.class
 
-// 获取导航栏透明模式配置
+// Get navbar transparent mode configuration
 const navbarTransparentMode =
 	siteConfig.banner?.navbar?.transparentMode || "semi";
 
-// 获取整体布局方案切换按钮显示设置
+// Get overall layout scheme switch button display settings
 const modeSwitchDisplay =
 	siteConfig.wallpaperMode?.showModeSwitchOnMobile || "desktop";
 
-// 检查是否为首页
+// Check if it's homepage
 const isHomePage = Astro.url.pathname === "/" || Astro.url.pathname === "";
 
 const links: NavBarLink[] = navBarConfig.links.map(
@@ -54,7 +54,7 @@ const iconWebpSrc = hasIconPngFallback ? iconSrc.replace(/\.png$/i, ".webp") : i
     <div class:list={[className, "!overflow-visible max-w-[var(--page-width)] h-[4.5rem] mx-auto flex items-center justify-between px-4"]}>
         <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[2.5rem] md:h-[3.25rem] md:[.enable-banner_&]:h-[2.5rem] md:[.enable-banner_&]:group-[.scrolled]:h-[3.25rem] px-5 font-bold active:scale-95 shrink-0 transition-all duration-300">
             <div class="flex flex-row items-center text-md">
-				{/* 使用navbarTitle配置或默认配置 */}
+				{/* Use navbarTitle configuration or default configuration */}
                 {siteConfig.navbarTitle ? (
                     siteConfig.navbarTitle.mode === "logo" ? (
                         hasLogoPngFallback ? (
@@ -95,7 +95,7 @@ const iconWebpSrc = hasIconPngFallback ? iconSrc.replace(/\.png$/i, ".webp") : i
             <div id="search-container">
                 <Search client:only="svelte"></Search>
             </div>
-            {/* 只在 sidebar 模式下显示移动端 TOC 按钮 */}
+            			{/* Only show mobile TOC button in sidebar mode */}
 			{siteConfig.toc.enable && siteConfig.toc.mobileTop && <MobileTOC client:only="svelte"></MobileTOC>}
             {!siteConfig.themeColor.fixed && (
                     <button aria-label="Display Settings" class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90" id="display-settings-switch">
@@ -103,7 +103,7 @@ const iconWebpSrc = hasIconPngFallback ? iconSrc.replace(/\.png$/i, ".webp") : i
                     </button>
             )}
             <LayoutSwitch client:only="svelte" currentLayout={siteConfig.postListLayout.defaultMode}></LayoutSwitch>
-            <!-- 整体布局方案切换按钮：根据配置决定在哪些设备上显示 -->
+            			<!-- Overall layout scheme switch button: display on which devices according to configuration -->
             <div class:list={[
                 modeSwitchDisplay === "off" ? "hidden" :
                 modeSwitchDisplay === "mobile" ? "block md:hidden" :
@@ -127,14 +127,14 @@ const iconWebpSrc = hasIconPngFallback ? iconSrc.replace(/\.png$/i, ".webp") : i
 	const navbarLinksContainer = document.getElementById("navbar-links-container");
 
 	if (searchContainer && navbarLinksContainer) {
-		// 鼠标移入/触摸开始时隐藏导航链接
+		// Hide navigation links on mouse enter/touch start
 		const hideLinks = () => {
 			if (window.matchMedia("(min-width: 1280px)").matches && window.matchMedia("(hover: hover)").matches) {
 				navbarLinksContainer.style.opacity = "0";
 			}
 		};
 
-		// 鼠标移出/触摸结束时显示导航链接
+		// Show navigation links on mouse leave/touch end
 		const showLinks = () => {
 			const navbar = document.getElementById("navbar");
 			if (navbar && !navbar.classList.contains("is-searching")) {
@@ -145,18 +145,18 @@ const iconWebpSrc = hasIconPngFallback ? iconSrc.replace(/\.png$/i, ".webp") : i
 		searchContainer.addEventListener("mouseenter", hideLinks);
 		searchContainer.addEventListener("mouseleave", showLinks);
 
-		// 移动端/触摸屏支持
+		// Mobile/touch screen support
 		searchContainer.addEventListener("touchstart", hideLinks, { passive: true });
 		searchContainer.addEventListener("touchend", showLinks);
 
-		// 监听 navbar 的 class 变化，当搜索框折叠时确保链接显示
+		// Listen for navbar class changes, ensure links are shown when search box collapses
 		const navbar = document.getElementById("navbar");
 		if (navbar) {
 			const observer = new MutationObserver((mutations) => {
 				mutations.forEach((mutation) => {
 					if (mutation.type === "attributes" && mutation.attributeName === "class") {
 						if (!navbar.classList.contains("is-searching")) {
-							// 搜索框已折叠，如果此时鼠标不在搜索容器内，强制显示链接
+							// Search box has collapsed, if mouse is not in search container, force show links
 							if (!searchContainer.matches(':hover')) {
 								showLinks();
 							}
@@ -187,7 +187,7 @@ async function loadButtonScript() {
         }
     } catch (error) {
         console.error('Failed to load panel manager:', error);
-        // 备用逻辑
+        		// Fallback logic
         const settingBtn = document.getElementById("display-settings-switch");
         if (settingBtn) {
             settingBtn.onclick = function () {
@@ -212,23 +212,23 @@ async function loadButtonScript() {
 
 loadButtonScript();
 
-// 为semifull模式添加滚动检测逻辑
+// Add scroll detection logic for semifull mode
 function initSemifullScrollDetection() {
     const navbar = document.getElementById('navbar');
     if (!navbar) {return;}
     
-    // 移除之前的滚动事件监听器（如果存在）
+    // Remove previous scroll event listener (if exists)
     // @ts-ignore
     if (window.semifullScrollHandler) {
         // @ts-ignore
         window.removeEventListener('scroll', window.semifullScrollHandler);
     }
     
-    // 获取当前是否为首页
+    // Get current homepage status
     // @ts-ignore
     const isHomePage = navbar.dataset.isHome === 'true';
 
-    // 如果不是首页，在平板/桌面端强制显示为scrolled状态
+    // If not homepage, force display as scrolled state on tablet/desktop
     if (!isHomePage) {
         navbar.classList.add('scrolled');
         return;
@@ -238,7 +238,7 @@ function initSemifullScrollDetection() {
     
     function updateNavbarState() {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const threshold = 50; // 滚动阈值，可以根据需要调整
+        const threshold = 50; // Scroll threshold, can be adjusted as needed
         
         if (navbar && scrollTop > threshold) {
             navbar.classList.add('scrolled');
@@ -256,22 +256,22 @@ function initSemifullScrollDetection() {
         }
     }
     
-    // 保存新的事件处理器引用
+    // Save new event handler reference
     // @ts-ignore
     window.semifullScrollHandler = requestTick;
     
-    // 监听滚动事件
+    // Listen for scroll events
     window.addEventListener('scroll', requestTick, { passive: true });
     
-    // 初始化状态
+    // Initialize state
     updateNavbarState();
 }
 
-// 将函数暴露到全局对象，供页面切换时调用
+// Expose function to global object for page transition calls
 // @ts-ignore
 window.initSemifullScrollDetection = initSemifullScrollDetection;
 
-// 页面加载完成后初始化滚动检测
+// Initialize scroll detection after page load completes
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSemifullScrollDetection);
 } else {

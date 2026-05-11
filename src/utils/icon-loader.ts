@@ -1,5 +1,5 @@
-// 图标加载工具类
-// 提供可靠的Iconify图标加载解决方案
+// Icon loading utility class
+// Provides reliable Iconify icon loading solution
 
 interface IconifyLoadOptions {
 	timeout?: number;
@@ -24,17 +24,17 @@ class IconLoader {
 	}
 
 	/**
-	 * 加载Iconify图标库
+	 * Load Iconify icon library
 	 */
 	async loadIconify(options: IconifyLoadOptions = {}): Promise<void> {
 		const { timeout = 10000, retryCount = 3, retryDelay = 1000 } = options;
 
-		// 如果已经加载完成，直接返回
+		// If already loaded, return directly
 		if (this.isLoaded) {
 			return Promise.resolve();
 		}
 
-		// 如果正在加载，返回现有的Promise
+		// If loading, return existing Promise
 		if (this.isLoading && this.loadPromise) {
 			return this.loadPromise;
 		}
@@ -75,23 +75,23 @@ class IconLoader {
 					);
 				}
 
-				// 等待后重试
+				// Wait and retry
 				await new Promise((resolve) => setTimeout(resolve, retryDelay));
 			}
 		}
 	}
 
 	/**
-	 * 加载脚本
+	 * Load script
 	 */
 	private loadScript(timeout: number): Promise<void> {
 		return new Promise((resolve, reject) => {
-			// 检查是否已经存在脚本
+			// Check if script already exists
 			const existingScript = document.querySelector(
 				'script[src*="iconify-icon"]',
 			);
 			if (existingScript) {
-				// 检查Iconify是否已经可用
+				// Check if Iconify is already available
 				if (this.isIconifyReady()) {
 					resolve();
 					return;
@@ -111,7 +111,7 @@ class IconLoader {
 
 			script.onload = () => {
 				clearTimeout(timeoutId);
-				// 等待Iconify完全初始化
+				// Wait for Iconify to fully initialize
 				this.waitForIconifyReady().then(resolve).catch(reject);
 			};
 
@@ -194,7 +194,7 @@ class IconLoader {
 	}
 
 	/**
-	 * 获取加载状态
+	 * Get loading state
 	 */
 	getLoadState(): { isLoaded: boolean; isLoading: boolean } {
 		return {
@@ -204,14 +204,14 @@ class IconLoader {
 	}
 
 	/**
-	 * 预加载指定图标
+	 * Preload specified icons
 	 */
 	async preloadIcons(icons: string[]): Promise<void> {
 		if (!this.isLoaded) {
 			await this.loadIconify();
 		}
 
-		// 等待图标加载
+		// Wait for icons to load
 		return new Promise((resolve) => {
 			let loadedCount = 0;
 			const totalIcons = icons.length;
@@ -228,16 +228,16 @@ class IconLoader {
 				}
 			};
 
-			// 创建临时图标元素来触发加载
+			// Create temporary icon elements to trigger loading
 			icons.forEach((icon) => {
 				const tempIcon = document.createElement("iconify-icon");
 				tempIcon.setAttribute("icon", icon);
 				tempIcon.style.display = "none";
 				tempIcon.onload = checkComplete;
-				tempIcon.onerror = checkComplete; // 即使加载失败也要继续
+				tempIcon.onerror = checkComplete; // Continue even if loading fails
 				document.body.appendChild(tempIcon);
 
-				// 清理临时元素
+				// Clean up temporary elements
 				setTimeout(() => {
 					if (tempIcon.parentNode) {
 						tempIcon.parentNode.removeChild(tempIcon);
@@ -245,7 +245,7 @@ class IconLoader {
 				}, 1000);
 			});
 
-			// 设置超时
+			// Set timeout
 			setTimeout(() => {
 				resolve();
 			}, 5000);
@@ -253,10 +253,10 @@ class IconLoader {
 	}
 }
 
-// 导出单例实例
+// Export singleton instance
 export const iconLoader = IconLoader.getInstance();
 
-// 导出便捷函数
+// Export utility functions
 export const loadIconify = (options?: IconifyLoadOptions) =>
 	iconLoader.loadIconify(options);
 export const preloadIcons = (icons: string[]) => iconLoader.preloadIcons(icons);
