@@ -26,7 +26,7 @@ const SITE_TIMEZONE = 8; // Set your website timezone from -12 to 12, default is
 export const siteConfig: SiteConfig = {
 	title: "AbuElOyun",
 	subtitle: "The Owl’s Nest Blog",
-	siteURL: "https://the-owls-nest.netlify.app/", // Netlify site URL
+	siteURL: "https://abueloyun.netlify.app/", // Netlify site URL
 	siteStartDate: "2026-04-04", // Site start date, used for site statistics component to calculate running days
 
 	timeZone: SITE_TIMEZONE,
