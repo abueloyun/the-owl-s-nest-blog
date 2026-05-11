@@ -134,7 +134,7 @@ The crawl returned an email address and other artifacts. `results.json` included
 <img src="/images/posts/img_Writeups/img_SkillsAssessment/finalresult.png" alt="final result scrapy" />
 
 
-```txt
+```json
 {
     "emails": [
         "1337testing@inlanefreight.htb"
