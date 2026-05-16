@@ -404,22 +404,22 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const commentConfig: CommentConfig = {
-	enable: false, // Enable comment function. When set to false, comment component will not display in article area.
-	system: "twikoo", // Comment system selection: "twikoo" | "giscus"
+	enable: true, // Enable comment function. When set to false, comment component will not display in article area.
+	system: "giscus", // Comment system selection: "twikoo" | "giscus"
 	twikoo: {
 		envId: "https://twikoo.vercel.app",
 		lang: SITE_LANG,
 	},
 	giscus: {
-		repo: "your-github-username/your-repo-name",
-		repoId: "your-repo-id",
+		repo: "AbuElOyun/The-Owl-s-Nest-Blog",
+		repoId: "R_kgDOR5L5zw",
 		category: "Announcements",
-		categoryId: "your-category-id",
+		categoryId: "DIC_kwDOR5L5z84C9J57",
 		mapping: "pathname",
 		strict: "0",
 		reactionsEnabled: "1",
 		emitMetadata: "0",
-		inputPosition: "top",
+		inputPosition: "bottom",
 		theme: "preferred_color_scheme",
 		lang: SITE_LANG,
 		loading: "lazy",

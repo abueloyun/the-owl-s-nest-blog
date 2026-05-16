@@ -6,7 +6,7 @@ image: /images/posts/img_Writeups/img_SkillsAssessment/Information-Gathering.web
 tags: [WHOIS Lookup, Fingerprinting Techniques, Virtual Hosts, Subdomain Bruteforcing, Web Crawling]
 category: Writeups
 draft: false
-pinned: false
+pinned: true
 comment: true
 lang: en
 ---
@@ -28,6 +28,12 @@ Target(s): `154.57.164.67:32585`
 > vHosts needed for these questions: `inlanefreight.htb`
 
 ---
+
+# Well let's get started
+
+<div align="center">
+  <img src="/images/posts/img_Writeups/img_SkillsAssessment/image.gif" alt="let's get started" />
+</div>
 
 ## 1. What is the IANA ID of the registrar of the inlanefreight.com domain?
 
