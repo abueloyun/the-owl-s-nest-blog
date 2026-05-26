@@ -200,7 +200,7 @@ export const siteConfig: SiteConfig = {
 		useJapaneseBadge: true, // Use Japanese kana marks (あいうえお...) instead of numbers, when enabled changes 1, 2, 3... to あ、い、う...
 	},
 	showCoverInContent: true, // Display article cover on article content page
-	generateOgImages: true, // Enable OpenGraph image generation feature, note that enabling this takes a long time to render, not recommended for local debugging
+	generateOgImages: false, // Enable OpenGraph image generation feature, note that enabling this takes a long time to render, not recommended for local debugging
 	favicon: [
 		// Leave blank to use default favicon
 		// {
