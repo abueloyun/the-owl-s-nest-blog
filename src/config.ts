@@ -22,7 +22,7 @@ import { LinkPreset } from "./types/config";
 
 // Define site language
 const SITE_LANG = "en"; // Language code, e.g.: 'en', 'zh_CN', 'ja', etc.
-const SITE_TIMEZONE = 8; // Set your website timezone from -12 to 12, default is UTC+8
+const SITE_TIMEZONE = 2; // Set your website timezone from -12 to 12, default is UTC+8
 export const siteConfig: SiteConfig = {
 	title: "AbuElOyun",
 	subtitle: "The Owl’s Nest Blog",
